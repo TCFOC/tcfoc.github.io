@@ -79,8 +79,6 @@ nav ul li a {
 
 
     #hero {
-      height: 100%;
-      width: 100%;
       background: #4D97FF;
       background: linear-gradient(90deg, #4D97FF 0%, #9966FF 100%);
       animation: huerot 30s infinite;
