@@ -19,6 +19,7 @@ p {
 
 h1 {
   font-size: 40px;
+  font-weight: 500;
 }
 
 .sigma {
@@ -91,7 +92,7 @@ nav ul li a {
 
 .competition-list {
   display: flex;
-  justify-content: center;
+  /*justify-content: center;*/
   flex-wrap: wrap;
   gap: 20px;
 }
@@ -101,7 +102,16 @@ nav ul li a {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 20px;
-  width: 300px;
+  width: 400px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.other-project {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  width: 97%;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
