@@ -71,7 +71,7 @@ nav ul li a {
 }
 
 #hero {
-  background: linear-gradient(135deg, #b0a400, #00770a);
+  background: linear-gradient(135deg, #b0a400, #00bbbb);
   color: white;
   padding: 10px 30px;
   text-align: center;
@@ -95,6 +95,7 @@ nav ul li a {
   /*justify-content: center;*/
   flex-wrap: wrap;
   gap: 20px;
+  overflow-x:auto;
 }
 
 .competition {
@@ -102,7 +103,7 @@ nav ul li a {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 20px;
-  width: 300px;
+  width: 290px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
