@@ -89,14 +89,14 @@
   </div>
 </div>
   <script>
-    const imageCount = 2; // Total images in /src/, e.g., image1.jpg to image10.jpg
+    const imageCount = 5; // Total images in /src/, e.g., image1.jpg to image10.jpg
     const wrapper = document.getElementById("slides-wrapper");
 
     // Add original slides
     for (let i = 1; i <= imageCount; i++) {
       const slide = document.createElement("div");
       slide.className = "slide";
-      slide.innerHTML = `<img src="src/image${i}.jpg" alt="Image ${i}">`;
+      slide.innerHTML = `<img src="src/image${i}.JPG" alt="Image ${i}">`;
       wrapper.appendChild(slide);
     }
 
