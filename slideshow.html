@@ -2,13 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Sliding Slideshow</title>
+  <title>Infinite Slideshow</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     .slideshow-container {
       max-width: 1000px;
-      aspect-ratio: 5 / 2;
+      aspect-ratio: 3 / 2;
       overflow: hidden;
       margin: auto;
       position: relative;
@@ -23,67 +27,60 @@
     .slide {
       flex: 0 0 100%;
       height: 100%;
-      position: relative;
     }
 
     .slide img {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* This makes the image visually crop to 5:2 */
-    }
-
-    .numbertext, .text {
-      position: absolute;
-      color: white;
-      width: 100%;
-      text-align: center;
-      text-shadow: 0 0 10px black;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    }
-
-    .numbertext {
-      top: 0;
-      padding: 8px 12px;
-      font-size: 12px;
-    }
-
-    .text {
-      bottom: 0;
-      padding: 8px 12px;
-      font-size: 15px;
+      object-fit: cover; /* Cropped instead of stretched */
     }
   </style>
 </head>
 <body>
 
   <div class="slideshow-container">
-    <div class="slides-wrapper" id="slides-wrapper">
-      <!-- Slides will be injected by JS -->
-    </div>
+    <div class="slides-wrapper" id="slides-wrapper"></div>
   </div>
 
   <script>
-    const imageCount = 2; // Adjust to the number of images you have
+    const imageCount = 10; // Total images in /src/, e.g., image1.jpg to image10.jpg
     const wrapper = document.getElementById("slides-wrapper");
 
+    // Add original slides
     for (let i = 1; i <= imageCount; i++) {
       const slide = document.createElement("div");
       slide.className = "slide";
-      slide.innerHTML = `
-        <div class="numbertext">${i} / ${imageCount}</div>
-        <img src="src/image${i}.jpg" alt="Image ${i}">
-        <div class="text">Image ${i}</div>
-      `;
+      slide.innerHTML = `<img src="src/image${i}.jpg" alt="Image ${i}">`;
+      wrapper.appendChild(slide);
+    }
+
+    // Clone them for seamless infinite loop
+    for (let i = 1; i <= imageCount; i++) {
+      const slide = document.createElement("div");
+      slide.className = "slide";
+      slide.innerHTML = `<img src="src/image${i}.jpg" alt="Image ${i}">`;
       wrapper.appendChild(slide);
     }
 
     let index = 0;
-    function slideShow() {
-      index = (index + 1) % imageCount;
-      wrapper.style.transform = `translateX(-${index * 100}%)`;
+    const slideWidth = 100; // Each slide is 100% width
+
+    function moveSlide() {
+      index++;
+      wrapper.style.transition = "transform 1s ease-in-out";
+      wrapper.style.transform = `translateX(-${index * slideWidth}%)`;
+
+      // When done with first round, snap back to beginning invisibly
+      if (index === imageCount) {
+        setTimeout(() => {
+          wrapper.style.transition = "none";
+          wrapper.style.transform = "translateX(0)";
+          index = 0;
+        }, 1000); // After slide finishes
+      }
     }
 
-    setInterval(slideShow, 5000);
+    setInterval(moveSlide, 5000); // Change every 5 seconds
   </script>
 
 </body>
