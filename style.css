@@ -96,7 +96,7 @@ nav ul li a {
   flex-wrap: wrap;
   gap: 20px;
   overflow-x:auto;
-  white-space:nowrap;
+  /*white-space:nowrap;*/
 }
 
 .competition {
@@ -107,7 +107,7 @@ nav ul li a {
   width: 290px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   flex: 0 0 auto;
-  white-space:normal;
+  /*white-space:normal;*/
 }
 
 .other-project {
