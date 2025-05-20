@@ -95,7 +95,7 @@ nav ul li a {
   /*justify-content: center;*/
   flex-wrap: wrap;
   gap: 20px;
-  overflow-x:auto;
+  /*overflow-x:auto;*/
   /*white-space:nowrap;*/
 }
 
