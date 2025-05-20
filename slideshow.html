@@ -1,153 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Dynamic Slideshow</title>
-  <style>
-    * { box-sizing: border-box; }
+  <meta charset="UTF-8" />
+  <title>Sliding Slideshow</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    .slideshow-container {
-      max-width: 1000px;
-      position: relative;
-      margin: auto;
-    }
+    .slideshow-container {
+      max-width: 1000px;
+      aspect-ratio: 5 / 2;
+      overflow: hidden;
+      margin: auto;
+      position: relative;
+    }
 
-    .mySlides {
-      display: none;
-    }
+    .slides-wrapper {
+      display: flex;
+      transition: transform 1s ease-in-out;
+      height: 100%;
+    }
 
-    .prev, .next {
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      width: auto;
-      margin-top: -22px;
-      padding: 16px;
-      color: white;
-      font-weight: bold;
-      font-size: 18px;
-      transition: 0.6s ease;
-      border-radius: 0 3px 3px 0;
-      user-select: none;
-    }
+    .slide {
+      flex: 0 0 100%;
+      height: 100%;
+      position: relative;
+    }
 
-    .next {
-      right: 0;
-      border-radius: 3px 0 0 3px;
-    }
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* This makes the image visually crop to 5:2 */
+    }
 
-    .prev:hover, .next:hover {
-      background-color: rgba(0, 0, 0, 0.8);
-    }
+    .numbertext, .text {
+      position: absolute;
+      color: white;
+      width: 100%;
+      text-align: center;
+      text-shadow: 0 0 10px black;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
 
-    .text {
-      color: #f2f2f2;
-      font-size: 15px;
-      padding: 8px 12px;
-      position: absolute;
-      bottom: 8px;
-      width: 100%;
-      text-align: center;
-    }
+    .numbertext {
+      top: 0;
+      padding: 8px 12px;
+      font-size: 12px;
+    }
 
-    .numbertext {
-      color: #f2f2f2;
-      font-size: 12px;
-      padding: 8px 12px;
-      position: absolute;
-      top: 0;
-    }
-
-    .dot {
-      cursor: pointer;
-      height: 15px;
-      width: 15px;
-      margin: 0 2px;
-      background-color: #bbb;
-      border-radius: 50%;
-      display: inline-block;
-      transition: background-color 0.6s ease;
-    }
-
-    .active, .dot:hover {
-      background-color: #717171;
-    }
-
-    .fade {
-      animation-name: fade;
-      animation-duration: 1.5s;
-    }
-
-    @keyframes fade {
-      from { opacity: .4 }
-      to { opacity: 1 }
-    }
-  </style>
+    .text {
+      bottom: 0;
+      padding: 8px 12px;
+      font-size: 15px;
+    }
+  </style>
 </head>
 <body>
 
-  <div class="slideshow-container" id="slideshow-container"></div>
-  <br>
-  <div style="text-align:center" id="dots-container"></div>
+  <div class="slideshow-container">
+    <div class="slides-wrapper" id="slides-wrapper">
+      <!-- Slides will be injected by JS -->
+    </div>
+  </div>
 
-  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  <script>
+    const imageCount = 2; // Adjust to the number of images you have
+    const wrapper = document.getElementById("slides-wrapper");
 
-  <script>
-    const imageCount = 2; // 🔁 change to number of images you have
-    const container = document.getElementById("slideshow-container");
-    const dotsContainer = document.getElementById("dots-container");
+    for (let i = 1; i <= imageCount; i++) {
+      const slide = document.createElement("div");
+      slide.className = "slide";
+      slide.innerHTML = `
+        <div class="numbertext">${i} / ${imageCount}</div>
+        <img src="src/image${i}.jpg" alt="Image ${i}">
+        <div class="text">Image ${i}</div>
+      `;
+      wrapper.appendChild(slide);
+    }
 
-    for (let i = 1; i <= imageCount; i++) {
-      const slide = document.createElement("div");
-      slide.className = "mySlides fade";
-      slide.innerHTML = `
-        <div class="numbertext">${i} / ${imageCount}</div>
-        <img src="src/Image${i}.jpg" style="width:100%">
-      `;
-      container.appendChild(slide);
-/*
-      const dot = document.createElement("span");
-      dot.className = "dot";
-      dot.onclick = () => currentSlide(i);
-      dotsContainer.appendChild(dot);*/
-    }
+    let index = 0;
+    function slideShow() {
+      index = (index + 1) % imageCount;
+      wrapper.style.transform = `translateX(-${index * 100}%)`;
+    }
 
-    let slideIndex = 1;
-    showSlides(slideIndex);
-
-    function plusSlides(n) {
-      showSlides(slideIndex += n);
-    }
-
-    function currentSlide(n) {
-      showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-      const slides = document.getElementsByClassName("mySlides");
-      const dots = document.getElementsByClassName("dot");
-
-      if (n > slides.length) { slideIndex = 1 }
-      if (n < 1) { slideIndex = slides.length }
-
-      for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-      }
-
-      for (let i = 0; i < dots.length; i++) {
-        dots[i].classList.remove("active");
-      }
-
-      slides[slideIndex - 1].style.display = "block";
-      dots[slideIndex - 1].classList.add("active");
-    }
-
-    // ✨ Automatic slideshow functionality ✨
-    setInterval(() => {
-      plusSlides(1);
-    }, 4000); // Change image every 4 seconds (4000 milliseconds)
-  </script>
+    setInterval(slideShow, 5000);
+  </script>
 
 </body>
 </html>
