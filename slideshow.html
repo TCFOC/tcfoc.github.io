@@ -1,148 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Dynamic Slideshow</title>
-  <style>
-    * { box-sizing: border-box; }
+  <meta charset="UTF-8" />
+  <title>Dynamic Slideshow</title>
+  <style>
+    * { box-sizing: border-box; }
 
-    .slideshow-container {
-      max-width: 1000px;
-      position: relative;
-      margin: auto;
-    }
+    .slideshow-container {
+      max-width: 1000px;
+      position: relative;
+      margin: auto;
+    }
 
-    .mySlides {
-      display: none;
-    }
+    .mySlides {
+      display: none;
+    }
 
-    .prev, .next {
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      width: auto;
-      margin-top: -22px;
-      padding: 16px;
-      color: white;
-      font-weight: bold;
-      font-size: 18px;
-      transition: 0.6s ease;
-      border-radius: 0 3px 3px 0;
-      user-select: none;
-    }
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      margin-top: -22px;
+      padding: 16px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+    }
 
-    .next {
-      right: 0;
-      border-radius: 3px 0 0 3px;
-    }
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
 
-    .prev:hover, .next:hover {
-      background-color: rgba(0, 0, 0, 0.8);
-    }
+    .prev:hover, .next:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
 
-    .text {
-      color: #f2f2f2;
-      font-size: 15px;
-      padding: 8px 12px;
-      position: absolute;
-      bottom: 8px;
-      width: 100%;
-      text-align: center;
-    }
+    .text {
+      color: #f2f2f2;
+      font-size: 15px;
+      padding: 8px 12px;
+      position: absolute;
+      bottom: 8px;
+      width: 100%;
+      text-align: center;
+    }
 
-    .numbertext {
-      color: #f2f2f2;
-      font-size: 12px;
-      padding: 8px 12px;
-      position: absolute;
-      top: 0;
-    }
+    .numbertext {
+      color: #f2f2f2;
+      font-size: 12px;
+      padding: 8px 12px;
+      position: absolute;
+      top: 0;
+    }
 
-    .dot {
-      cursor: pointer;
-      height: 15px;
-      width: 15px;
-      margin: 0 2px;
-      background-color: #bbb;
-      border-radius: 50%;
-      display: inline-block;
-      transition: background-color 0.6s ease;
-    }
+    .dot {
+      cursor: pointer;
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+    }
 
-    .active, .dot:hover {
-      background-color: #717171;
-    }
+    .active, .dot:hover {
+      background-color: #717171;
+    }
 
-    .fade {
-      animation-name: fade;
-      animation-duration: 1.5s;
-    }
+    .fade {
+      animation-name: fade;
+      animation-duration: 1.5s;
+    }
 
-    @keyframes fade {
-      from { opacity: .4 }
-      to { opacity: 1 }
-    }
-  </style>
+    @keyframes fade {
+      from { opacity: .4 }
+      to { opacity: 1 }
+    }
+  </style>
 </head>
 <body>
 
-  <div class="slideshow-container" id="slideshow-container"></div>
-  <br>
-  <div style="text-align:center" id="dots-container"></div>
+  <div class="slideshow-container" id="slideshow-container"></div>
+  <br>
+  <div style="text-align:center" id="dots-container"></div>
 
-  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
-  <script>
-    const imageCount = 2; // 🔁 change to number of images you have
-    const container = document.getElementById("slideshow-container");
-    const dotsContainer = document.getElementById("dots-container");
+  <script>
+    const imageCount = 10; // 🔁 change to number of images you have
+    const container = document.getElementById("slideshow-container");
+    const dotsContainer = document.getElementById("dots-container");
 
-    for (let i = 1; i <= imageCount; i++) {
-      const slide = document.createElement("div");
-      slide.className = "mySlides fade";
-      slide.innerHTML = `
-        <div class="numbertext">${i} / ${imageCount}</div>
-        <img src="src/Image${i}.jpg" style="width:100%">
-      `;
-      container.appendChild(slide);
+    for (let i = 1; i <= imageCount; i++) {
+      const slide = document.createElement("div");
+      slide.className = "mySlides fade";
+      slide.innerHTML = `
+        <div class="numbertext">${i} / ${imageCount}</div>
+        <img src="src/image${i}.jpg" style="width:100%">
+        <div class="text">Image ${i}</div>
+      `;
+      container.appendChild(slide);
 
-      const dot = document.createElement("span");
-      dot.className = "dot";
-      dot.onclick = () => currentSlide(i);
-      dotsContainer.appendChild(dot);
-    }
+      const dot = document.createElement("span");
+      dot.className = "dot";
+      dot.onclick = () => currentSlide(i);
+      dotsContainer.appendChild(dot);
+    }
 
-    let slideIndex = 1;
-    showSlides(slideIndex);
+    let slideIndex = 1;
+    showSlides(slideIndex);
 
-    function plusSlides(n) {
-      showSlides(slideIndex += n);
-    }
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
 
-    function currentSlide(n) {
-      showSlides(slideIndex = n);
-    }
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
 
-    function showSlides(n) {
-      const slides = document.getElementsByClassName("mySlides");
-      const dots = document.getElementsByClassName("dot");
+    function showSlides(n) {
+      const slides = document.getElementsByClassName("mySlides");
+      const dots = document.getElementsByClassName("dot");
 
-      if (n > slides.length) { slideIndex = 1 }
-      if (n < 1) { slideIndex = slides.length }
+      if (n > slides.length) { slideIndex = 1 }
+      if (n < 1) { slideIndex = slides.length }
 
-      for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-      }
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
 
-      for (let i = 0; i < dots.length; i++) {
-        dots[i].classList.remove("active");
-      }
+      for (let i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
 
-      slides[slideIndex - 1].style.display = "block";
-      dots[slideIndex - 1].classList.add("active");
-    }
-  </script>
+      slides[slideIndex - 1].style.display = "block";
+      dots[slideIndex - 1].classList.add("active");
+    }
+
+    // ✨ Automatic slideshow functionality ✨
+    setInterval(() => {
+      plusSlides(1);
+    }, 4000); // Change image every 4 seconds (4000 milliseconds)
+  </script>
 
 </body>
 </html>
