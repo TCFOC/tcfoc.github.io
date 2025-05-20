@@ -106,7 +106,7 @@ nav ul li a {
   padding: 20px;
   width: 290px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  flex: 0 0 auto;
+  /*flex: 0 0 auto;/*
   /*white-space:normal;*/
 }
 
