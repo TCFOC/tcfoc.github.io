@@ -49,6 +49,88 @@
       <iframe src="/slideshow.html" width="80%" height="400px" style="border:none;">
     </center>-->
 
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    .slideshow-container {
+      max-width: 1000px;
+      aspect-ratio: 3 / 2;
+      overflow: hidden;
+      margin: auto;
+      position: relative;
+    }
+
+    .slides-wrapper {
+      display: flex;
+      transition: transform 1s ease-in-out;
+      height: 100%;
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      height: 100%;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Cropped instead of stretched */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slideshow-container">
+    <div class="slides-wrapper" id="slides-wrapper"></div>
+  </div>
+
+  <script>
+    const imageCount = 2; // Total images in /src/, e.g., image1.jpg to image10.jpg
+    const wrapper = document.getElementById("slides-wrapper");
+
+    // Add original slides
+    for (let i = 1; i <= imageCount; i++) {
+      const slide = document.createElement("div");
+      slide.className = "slide";
+      slide.innerHTML = `<img src="src/image${i}.jpg" alt="Image ${i}">`;
+      wrapper.appendChild(slide);
+    }
+
+    // Clone them for seamless infinite loop
+    for (let i = 1; i <= imageCount; i++) {
+      const slide = document.createElement("div");
+      slide.className = "slide";
+      slide.innerHTML = `<img src="src/image${i}.jpg" alt="Image ${i}">`;
+      wrapper.appendChild(slide);
+    }
+
+    let index = 0;
+    const slideWidth = 100; // Each slide is 100% width
+
+    function moveSlide() {
+      index++;
+      wrapper.style.transition = "transform 1s ease-in-out";
+      wrapper.style.transform = `translateX(-${index * slideWidth}%)`;
+
+      // When done with first round, snap back to beginning invisibly
+      if (index === imageCount) {
+        setTimeout(() => {
+          wrapper.style.transition = "none";
+          wrapper.style.transform = "translateX(0)";
+          index = 0;
+        }, 1000); // After slide finishes
+      }
+    }
+
+    setInterval(moveSlide, 5000); // Change every 5 seconds
+  </script>
+
+
+
     <hr>
 
     <h1>กำหนดการ การแข่งขัน TCF 2nd</h1>
