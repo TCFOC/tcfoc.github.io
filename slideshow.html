@@ -94,7 +94,7 @@
   <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
   <script>
-    const imageCount = 10; // 🔁 change to number of images you have
+    const imageCount = 2; // 🔁 change to number of images you have
     const container = document.getElementById("slideshow-container");
     const dotsContainer = document.getElementById("dots-container");
 
@@ -103,7 +103,7 @@
       slide.className = "mySlides fade";
       slide.innerHTML = `
         <div class="numbertext">${i} / ${imageCount}</div>
-        <img src="src/image${i}.jpg" style="width:100%">
+        <img src="src/Image${i}.jpg" style="width:100%">
       `;
       container.appendChild(slide);
 
