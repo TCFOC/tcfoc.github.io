@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Countdown to Aug 21, 2025 - 4PM</title>
+  <style>
+    body {
+      background: #121212;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .countdown {
+      display: flex;
+      gap: 10px;
+      font-size: 3rem;
+      font-weight: bold;
+    }
+
+    .digit-wrapper {
+      display: flex;
+      overflow: hidden;
+      height: 60px;
+      width: 30px;
+      position: relative;
+    }
+
+    .digit {
+      position: absolute;
+      width: 100%;
+      height: 60px;
+      line-height: 60px;
+      text-align: center;
+      transform: translateY(0);
+      transition: transform 0.3s ease;
+    }
+
+    .colon {
+      padding: 0 5px;
+      font-weight: normal;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="countdown" id="countdown"></div>
+
+  <script>
+    const targetDate = new Date("2025-08-21T16:00:00+07:00");
+
+    const countdown = document.getElementById("countdown");
+    const digits = [];
+
+    // Create digit containers
+    function createDigit(char) {
+      if (char === ":") {
+        const colon = document.createElement("div");
+        colon.className = "colon";
+        colon.textContent = ":";
+        countdown.appendChild(colon);
+        digits.push(null); // placeholder
+        return;
+      }
+
+      const wrapper = document.createElement("div");
+      wrapper.className = "digit-wrapper";
+      const current = document.createElement("div");
+      current.className = "digit";
+      current.textContent = char;
+      wrapper.appendChild(current);
+      countdown.appendChild(wrapper);
+      digits.push({ wrapper, current, value: char });
+    }
+
+    function initDisplay() {
+      const [d, h, m, s] = getTimeParts();
+      const all = (d + h + m + s).split('');
+      const display = [];
+
+      for (let i = 0; i < all.length; i++) {
+        display.push(all[i]);
+        if (i === d.length - 1 || i === d.length + h.length - 1 || i === d.length + h.length + m.length - 1) {
+          display.push(":");
+        }
+      }
+
+      display.forEach(createDigit);
+    }
+
+    function getTimeParts() {
+      const now = new Date();
+      const diff = Math.max(0, targetDate - now);
+      const sec = Math.floor((diff / 1000) % 60).toString().padStart(2, '0');
+      const min = Math.floor((diff / 1000 / 60) % 60).toString().padStart(2, '0');
+      const hr = Math.floor((diff / 1000 / 60 / 60) % 24).toString().padStart(2, '0');
+      const day = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+      return [day, hr, min, sec];
+    }
+
+    function updateDigits() {
+      const [d, h, m, s] = getTimeParts();
+      const all = (d + h + m + s).split('');
+      let digitIndex = 0;
+
+      for (let i = 0; i < digits.length; i++) {
+        const digitObj = digits[i];
+        if (!digitObj) continue;
+
+        const newChar = all[digitIndex++];
+        if (digitObj.value !== newChar) {
+          const newDigit = document.createElement("div");
+          newDigit.className = "digit";
+          newDigit.textContent = newChar;
+          newDigit.style.transform = "translateY(-100%)";
+          digitObj.wrapper.appendChild(newDigit);
+
+          requestAnimationFrame(() => {
+            digitObj.current.style.transform = "translateY(100%)";
+            newDigit.style.transform = "translateY(0)";
+          });
+
+          setTimeout(() => {
+            digitObj.wrapper.removeChild(digitObj.current);
+            digitObj.current = newDigit;
+            digitObj.value = newChar;
+          }, 300);
+        }
+      }
+    }
+
+    initDisplay();
+    setInterval(updateDigits, 1000);
+  </script>
+</body>
+</html>
