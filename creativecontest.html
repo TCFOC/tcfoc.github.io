@@ -12,6 +12,7 @@
       --blue:   0,  30, 120;   /* dark blue (deeper than navy) */
     }
 
+    /* Base layout */
     * {
       font-family: 'IBM Plex Sans Thai', system-ui, sans-serif;
     }
@@ -21,22 +22,23 @@
     }
     body {
       margin: 0;
-      background: #000;
+      background: #000;                 /* static black */
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
+      overflow: hidden;                 /* hide any overflow from lights */
+      font-family: 'IBM Plex Sans Thai', system-ui, sans-serif;
       font-weight: 400;
       color: #fff;
       position: relative;
-      flex-direction: column;
     }
 
+    /* --- MOVING LIGHTS (background only) --- */
     .lights {
       position: absolute;
       inset: 0;
       pointer-events: none;
-      z-index: 0;
+      z-index: 0; /* behind content */
     }
 
     .blob {
@@ -103,6 +105,7 @@
       gap: 16px;
       justify-content: center;
       flex-wrap: nowrap;
+      font-family: 'IBM Plex Sans Thai', system-ui, sans-serif;
     }
 
     .buttons button {
@@ -122,55 +125,6 @@
       transform: translateY(-2px);
       border-color: rgba(255,255,255,0.5);
       box-shadow: 0 8px 22px rgba(0,0,0,0.5);
-    }
-
-    .countdown {
-      display: flex;
-      gap: clamp(4px, 1.4vw, 10px);
-      font-size: clamp(1.1rem, 6.5vw, 2.4rem);
-      font-weight: 600;
-      justify-content: center;
-      align-items: center;
-      margin-top: 18px;
-      flex-wrap: nowrap;
-      white-space: nowrap;
-      overflow: hidden;
-      padding: 0 5vw;              /* add horizontal breathing space */
-      box-sizing: border-box;      /* include padding in layout */
-    }
-
-    .digit-wrapper {
-      display: flex;
-      overflow: hidden;
-      /* tie dimensions to font-size so it scales smoothly */
-      height: 1.9em;
-      width: 1.05em;
-      position: relative;
-      border-radius: 8px;
-      background: rgba(255,255,255,0.06);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
-      flex: 0 0 auto;            /* prevent flex shrinking that causes wrap */
-    }
-
-    .digit {
-      position: absolute;
-      width: 100%;
-      height: 1.9em;
-      line-height: 1.9em;
-      text-align: center;
-      transform: translateY(0);
-      transition: transform 0.3s ease;
-    }
-
-    .colon {
-      padding: 0 clamp(2px, 0.8vw, 4px);
-      font-weight: 500;
-      opacity: 0.75;
-      line-height: 1.9em;
-      height: 1.9em;
-      display: inline-flex;
-      align-items: center;
-      flex: 0 0 auto;
     }
 
     @media (max-width: 480px) {
@@ -232,94 +186,7 @@
     </div>
     <!-- Countdown -->
     <div class="countdown" id="countdown" aria-live="polite"></div>
-    <div class="countdown" id="countdown"></div>
   </div>
-
-  <script>
-    const targetDate = new Date("2025-09-19T20:00:00+07:00");
-
-    const countdown = document.getElementById("countdown");
-    const digits = [];
-
-    function createDigit(char) {
-      if (char === ":") {
-        const colon = document.createElement("div");
-        colon.className = "colon";
-        colon.textContent = ":";
-        countdown.appendChild(colon);
-        digits.push(null);
-        return;
-      }
-
-      const wrapper = document.createElement("div");
-      wrapper.className = "digit-wrapper";
-      const current = document.createElement("div");
-      current.className = "digit";
-      current.textContent = char;
-      wrapper.appendChild(current);
-      countdown.appendChild(wrapper);
-      digits.push({ wrapper, current, value: char });
-    }
-
-    function getTimeParts() {
-      const now = new Date();
-      const diff = Math.max(0, targetDate - now);
-      const sec = Math.floor((diff / 1000) % 60).toString().padStart(2, '0');
-      const min = Math.floor((diff / 1000 / 60) % 60).toString().padStart(2, '0');
-      const hr = Math.floor((diff / 1000 / 60 / 60) % 24).toString().padStart(2, '0');
-      const day = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-      return [day, hr, min, sec];
-    }
-
-    function initDisplay() {
-      const [d, h, m, s] = getTimeParts();
-      const all = (d + h + m + s).split('');
-      const display = [];
-
-      for (let i = 0; i < all.length; i++) {
-        display.push(all[i]);
-        if (i === d.length - 1 || i === d.length + h.length - 1 || i === d.length + h.length + m.length - 1) {
-          display.push(":");
-        }
-      }
-
-      display.forEach(createDigit);
-    }
-
-    function updateDigits() {
-      const [d, h, m, s] = getTimeParts();
-      const all = (d + h + m + s).split('');
-      let digitIndex = 0;
-
-      for (let i = 0; i < digits.length; i++) {
-        const digitObj = digits[i];
-        if (!digitObj) continue;
-
-        const newChar = all[digitIndex++];
-        if (digitObj.value !== newChar) {
-          const newDigit = document.createElement("div");
-          newDigit.className = "digit";
-          newDigit.textContent = newChar;
-          newDigit.style.transform = "translateY(-100%)";
-          digitObj.wrapper.appendChild(newDigit);
-
-          requestAnimationFrame(() => {
-            digitObj.current.style.transform = "translateY(100%)";
-            newDigit.style.transform = "translateY(0)";
-          });
-
-          setTimeout(() => {
-            digitObj.wrapper.removeChild(digitObj.current);
-            digitObj.current = newDigit;
-            digitObj.value = newChar;
-          }, 300);
-        }
-      }
-    }
-
-    initDisplay();
-    setInterval(updateDigits, 1000);
-  </script>
   <script>
     // Countdown to 19 September 2025, 20:00 (Asia/Bangkok, +07:00)
     const targetDate = new Date("2025-09-19T20:00:00+07:00");
