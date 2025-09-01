@@ -1,95 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>TCF Creative Contest</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link
-    href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet">
+  <meta charset="UTF-8" />
+  <title>Landing Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Google Fonts: IBM Plex Sans Thai -->
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --orange: 255, 140, 0;   /* orange */
+      --blue:   0,  30, 120;   /* dark blue (deeper than navy) */
+    }
+
+    /* Base layout */
+    html, body {
+      height: 100%;
+    }
     body {
       margin: 0;
-      height: 100vh;
+      background: #000;                 /* static black */
       display: flex;
-      justify-content: center;
       align-items: center;
-      background: black; /* static black base */
-      overflow: hidden;
-      font-family: Prompt, Arial, sans-serif;
-      color: white;
+      justify-content: center;
+      overflow: hidden;                 /* hide any overflow from lights */
+      font-family: 'IBM Plex Sans Thai', system-ui, sans-serif;
+      font-weight: 400;
+      color: #fff;
       position: relative;
     }
 
-    /* Moving spotlight layers */
-    .light {
+    /* --- MOVING LIGHTS (background only) --- */
+    .lights {
       position: absolute;
-      width: 150%;
-      height: 150%;
-      pointer-events: none; /* don't block clicks */
-      background: radial-gradient(circle, rgba(255,140,0,0.4), transparent 70%);
-      animation: moveOrange 12s infinite alternate ease-in-out;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0; /* behind content */
     }
 
-    .light.blue {
-      background: radial-gradient(circle, rgba(0,0,139,0.4), transparent 70%);
-      animation: moveBlue 15s infinite alternate ease-in-out;
+    .blob {
+      position: absolute;
+      width: 160vmax;
+      height: 160vmax;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      filter: blur(20px);
+      opacity: 0.9;
+      will-change: transform;
     }
 
-    @keyframes moveOrange {
-      0% { transform: translate(-20%, -20%); }
-      100% { transform: translate(20%, 20%); }
+    .blob.orange {
+      background: radial-gradient(circle at center,
+        rgba(var(--orange), 0.42) 0%,
+        rgba(var(--orange), 0.20) 30%,
+        rgba(var(--orange), 0.08) 55%,
+        rgba(var(--orange), 0.04) 68%,
+        transparent 78%
+      );
+      animation: driftA 22s ease-in-out infinite alternate;
     }
 
-    @keyframes moveBlue {
-      0% { transform: translate(20%, -10%); }
-      100% { transform: translate(-20%, 10%); }
+    .blob.blue {
+      background: radial-gradient(circle at center,
+        rgba(var(--blue), 0.40) 0%,
+        rgba(var(--blue), 0.20) 28%,
+        rgba(var(--blue), 0.08) 52%,
+        rgba(var(--blue), 0.04) 66%,
+        transparent 76%
+      );
+      animation: driftB 26s ease-in-out infinite alternate;
+    }
+
+    @keyframes driftA {
+      0%   { transform: translate(-50%, -50%) translate(-12vmax, -8vmax) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) translate( 10vmax,  6vmax) rotate(15deg); }
+    }
+    @keyframes driftB {
+      0%   { transform: translate(-50%, -50%) translate( 14vmax, -10vmax) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) translate(-10vmax,  12vmax) rotate(-12deg); }
     }
 
     .container {
+      position: relative;
+      z-index: 1;
       text-align: center;
-      z-index: 1; /* keep content above lights */
+      padding: 24px;
     }
 
     h1 {
-      margin-bottom: 40px;
-      font-size: 2.5rem;
+      margin: 0 0 28px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
     .buttons {
       display: flex;
+      gap: 16px;
       justify-content: center;
-      gap: 20px;
+      flex-wrap: nowrap;
     }
 
-    button {
-      padding: 15px 25px;
+    .buttons button {
+      padding: 12px 20px;
       font-size: 1rem;
-      color: black;
-      background: #f0f8ff;
-      border: none;
-      border-radius: 8px;
+      font-weight: 500;
+      color: #fff;
+      background: #0b0b0b;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 10px;
       cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      backdrop-filter: saturate(120%);
     }
 
-    button:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 20px rgba(255,140,0,0.7);
+    .buttons button:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.5);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.5);
+    }
+
+    @media (max-width: 480px) {
+      .buttons { flex-wrap: wrap; }
     }
   </style>
 </head>
 <body>
-  <!-- moving spotlights -->
-  <div class="light"></div>
-  <div class="light blue"></div>
+  <div class="lights" aria-hidden="true">
+    <div class="blob orange"></div>
+    <div class="blob blue"></div>
+  </div>
 
-  <!-- content -->
   <div class="container">
-    <h1>TCF Creative Contest</h1>
+    <h1>Landing Page Title</h1>
     <div class="buttons">
       <button>Button 1</button>
       <button>Button 2</button>
