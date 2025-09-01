@@ -126,35 +126,51 @@
 
     .countdown {
       display: flex;
-      gap: 10px;
-      font-size: 2rem;
-      font-weight: bold;
-      margin-top: 24px;
+      gap: clamp(4px, 1.4vw, 10px);
+      font-size: clamp(1.1rem, 6.5vw, 2.4rem);
+      font-weight: 600;
       justify-content: center;
+      align-items: center;
+      margin-top: 18px;
+      flex-wrap: nowrap;
+      white-space: nowrap;
+      overflow: hidden;
+      padding: 0 5vw;              /* add horizontal breathing space */
+      box-sizing: border-box;      /* include padding in layout */
     }
 
     .digit-wrapper {
       display: flex;
       overflow: hidden;
-      height: 40px;
-      width: 24px;
+      /* tie dimensions to font-size so it scales smoothly */
+      height: 1.9em;
+      width: 1.05em;
       position: relative;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.06);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+      flex: 0 0 auto;            /* prevent flex shrinking that causes wrap */
     }
 
     .digit {
       position: absolute;
       width: 100%;
-      height: 40px;
-      line-height: 40px;
+      height: 1.9em;
+      line-height: 1.9em;
       text-align: center;
       transform: translateY(0);
       transition: transform 0.3s ease;
     }
 
     .colon {
-      padding: 0 5px;
-      font-weight: normal;
-      opacity: 0.5;
+      padding: 0 clamp(2px, 0.8vw, 4px);
+      font-weight: 500;
+      opacity: 0.75;
+      line-height: 1.9em;
+      height: 1.9em;
+      display: inline-flex;
+      align-items: center;
+      flex: 0 0 auto;
     }
 
     @media (max-width: 480px) {
