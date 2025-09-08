@@ -71,7 +71,7 @@ nav ul li a {
 }
 
 #hero {
-  background: url('/src/image1.JPG') no-repeat center center;
+  background: url('/src/cc.JPG') no-repeat center center;
   background-size: cover; /* makes it fill the section */
   color: white;
   padding: 10px 30px;
@@ -132,4 +132,5 @@ footer {
   padding-right: 50px;
   margin: 0;
 }
+
 
