@@ -71,7 +71,8 @@ nav ul li a {
 }
 
 #hero {
-  background: linear-gradient(135deg, #b0a400, #00bbbb);
+  background: url('/src/image1.JPG') no-repeat center center;
+  background-size: cover; /* makes it fill the section */
   color: white;
   padding: 10px 30px;
   text-align: center;
@@ -131,3 +132,4 @@ footer {
   padding-right: 50px;
   margin: 0;
 }
+
