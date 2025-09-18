@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aligned Layout with FC Iconic</title>
+
+  <style>
+    /* FC Iconic Regular */
+    @font-face {
+      font-family: "FC Iconic";
+      src: url("src/FC Iconic Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    /* FC Iconic Italic */
+    @font-face {
+      font-family: "FC Iconic";
+      src: url("src/FC Iconic Italic.ttf") format("truetype");
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    /* FC Iconic Bold */
+    @font-face {
+      font-family: "FC Iconic";
+      src: url("src/FC Iconic Bold.ttf") format("truetype");
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    /* FC Iconic Bold Italic */
+    @font-face {
+      font-family: "FC Iconic";
+      src: url("src/FC Iconic Bold Italic.ttf") format("truetype");
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    body {
+      margin: 0;
+      background: #000;
+      font-family: "FC Iconic", -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, "Helvetica Neue", Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #fff;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .image-row img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .button-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .button-row button {
+      flex: 1;
+      background: #fff;
+      color: #000;
+      border: none;
+      padding: 0.8em;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 4px;
+      font-family: inherit;
+    }
+
+    .long-button {
+      width: 100%;
+      background: #000;
+      color: #fff;
+      border: 2px solid #fff;
+      padding: 0.8em;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 4px;
+      margin-bottom: 30px;
+      font-family: inherit;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="image-row">
+      <img src="src/tcf2.png" alt="TCF 2nd Open for Registration">
+    </div>
+
+    <div class="button-row">
+      <button onclick="window.location.href='https://tally.so/r/3EpKR2';">สมัครสอบ TCF 2nd</button>
+      <button onclick="window.location.href='https://tcfthailand.com/home';">เข้าสู่หน้าหลัก</button>
+    </div>
+
+    <button class="long-button" onclick="window.location.href='https://tcfthailand.com/creativecontest';">ส่งผลงาน TCF Creative Contest คลิกที่นี่</button>
+  </div>
+</body>
+</html>
