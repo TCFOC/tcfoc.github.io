@@ -78,6 +78,13 @@ nav ul li a {
   text-align: center;
 }
 
+#hero-default {
+  background: linear-gradient(135deg, #b0a400, #00bbbb);
+  color: white;
+  padding: 10px 30px;
+  text-align: center;
+}
+
 .cta-button {
   background-color: #00b3b6;
   color: white;
@@ -132,5 +139,6 @@ footer {
   padding-right: 50px;
   margin: 0;
 }
+
 
 
