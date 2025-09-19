@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TCF Creative Contest</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Google Fonts: IBM Plex Sans Thai -->
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: 255, 140, 0;
+      --blue:   0,  30, 120;
+    }
+
+    * {
+      font-family: 'IBM Plex Sans Thai', system-ui, sans-serif;
+    }
+    
+    html, body {
+      height: 100%;
+      overflow: hidden; /* prevent any scrolling */
+    }
+    body {
+      margin: 0;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 400;
+      color: #fff;
+      position: relative;
+      flex-direction: column;
+    }
+
+    .lights {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .blob {
+      position: absolute;
+      width: 160vmax;
+      height: 160vmax;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      filter: blur(20px);
+      opacity: 0.9;
+      will-change: transform;
+    }
+
+    .blob.orange {
+      background: radial-gradient(circle at center,
+        rgba(var(--orange), 0.42) 0%,
+        rgba(var(--orange), 0.20) 30%,
+        rgba(var(--orange), 0.08) 55%,
+        rgba(var(--orange), 0.04) 68%,
+        transparent 78%
+      );
+      animation: driftA 22s ease-in-out infinite alternate;
+    }
+
+    .blob.blue {
+      background: radial-gradient(circle at center,
+        rgba(var(--blue), 0.40) 0%,
+        rgba(var(--blue), 0.20) 28%,
+        rgba(var(--blue), 0.08) 52%,
+        rgba(var(--blue), 0.04) 66%,
+        transparent 76%
+      );
+      animation: driftB 26s ease-in-out infinite alternate;
+    }
+
+    @keyframes driftA {
+      0%   { transform: translate(-50%, -50%) translate(-12vmax, -8vmax) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) translate(10vmax, 6vmax) rotate(15deg); }
+    }
+    @keyframes driftB {
+      0%   { transform: translate(-50%, -50%) translate(14vmax, -10vmax) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) translate(-10vmax, 12vmax) rotate(-12deg); }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 24px;
+    }
+
+    img {
+      max-width: 90%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="lights" aria-hidden="true">
+    <div class="blob orange"></div>
+    <div class="blob blue"></div>
+  </div>
+
+  <div class="container">
+    <img src="https://tcfthailand.com/src/cc_closed.png" alt="Contest Closed">
+  </div>
+</body>
+</html>
