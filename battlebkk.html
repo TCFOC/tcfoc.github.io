@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Random Outcome Button</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      background: #ff8c00;
+      color: #fff;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #e67e00;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <button onclick="pickOutcome()">Pick Outcome</button>
+  <div id="result"></div>
+
+  <script>
+    const outcomes = [
+      "Curse: Nothing. This curse has no effect.",
+      "Curse: Disappointment. The opponent cannot take the zone whatsoever.",
+      "Curse: Treasure Hunt. Opponent must find a random object within 7 minutes after visiting the center.",
+      "Curse: Guess. Opponent must guess your current location after visiting the center.",
+      "Battle Challenge",
+      "Get Off",
+      "Get Off",
+      "Swap",
+      "Swap",
+      "Draw 2, Pick 1",
+      "Draw 2, Pick 2"
+    ];
+
+    function pickOutcome() {
+      const choice = outcomes[Math.floor(Math.random() * outcomes.length)];
+      document.getElementById("result").textContent = choice+" - Please screenshot this page.";
+    }
+  </script>
+</body>
+</html>
