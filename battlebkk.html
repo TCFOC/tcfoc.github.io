@@ -13,13 +13,15 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
+      transform: scale(3);   /* Scale everything 3x */
+      transform-origin: center;
     }
     button {
-      padding: 12px 24px;
-      font-size: 16px;
+      padding: 36px 72px;  /* 3x original (12→36, 24→72) */
+      font-size: 48px;     /* 3x original 16px */
       cursor: pointer;
       border: none;
-      border-radius: 6px;
+      border-radius: 18px; /* 3x original 6px */
       background: #ff8c00;
       color: #fff;
       transition: background 0.3s;
@@ -28,9 +30,11 @@
       background: #e67e00;
     }
     #result {
-      margin-top: 20px;
-      font-size: 18px;
+      margin-top: 60px;    /* 3x original 20px */
+      font-size: 54px;     /* 3x original 18px */
       font-weight: bold;
+      text-align: center;
+      max-width: 80%;
     }
   </style>
 </head>
@@ -55,7 +59,7 @@
 
     function pickOutcome() {
       const choice = outcomes[Math.floor(Math.random() * outcomes.length)];
-      document.getElementById("result").textContent = choice+" - Please screenshot this page.";
+      document.getElementById("result").textContent = choice + " - Please screenshot this page.";
     }
   </script>
 </body>
