@@ -1,6 +1,5 @@
 * {
   font-family: "Prompt", "Segoe UI", Arial, sans-serif;
-  box-sizing: border-box;
 }
 
 body {
@@ -8,13 +7,10 @@ body {
   padding: 0;
   background-color: #f0f4f8;
   color: #333;
-  line-height: 1.7;        /* easier reading */
 }
 
 p {
   font-size: 20px;
-  max-width: 800px;        /* prevent long text stretching */
-  margin: 1em auto;        /* center and add space */
 }
 
 .large {
@@ -24,8 +20,6 @@ p {
 h1 {
   font-size: 40px;
   font-weight: 500;
-  margin: 0 0 0.8em;       /* add bottom margin */
-  line-height: 1.3;
 }
 
 .sigma {
@@ -34,25 +28,25 @@ h1 {
 
 h2 {
   font-size: 32px;
-  margin: 0 0 0.8em;
-  line-height: 1.4;
+  margin-top: 0;
 }
 
 header {
   background: #222;
-  padding: 20px 30px;      /* more breathing room */
+  padding: 0;
   margin: 0;
   text-align: center;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Space out header elements */
+  align-items: center; /* Center align items vertically */
 }
 
 .header-text {
   font-size: 500%;
   font-weight: 200;
   text-align: left;
-  line-height: 1.1;
+  letter-spacing: -5%;
+  line-height: 90%;
   padding-left: 20px;
 }
 
@@ -64,7 +58,7 @@ header h2 {
 nav ul {
   list-style: none;
   padding: 0;
-  display: flex;
+  display: flex; /* Use flexbox for horizontal menu */
 }
 
 nav ul li {
@@ -78,69 +72,73 @@ nav ul li a {
 
 #hero {
   background: url('/src/title.JPG') no-repeat center center;
-  background-size: cover;
+  background-size: cover; /* makes it fill the section */
   color: white;
-  padding: 60px 30px;      /* taller hero */
+  padding: 10px 30px;
   text-align: center;
 }
 
 #hero-color {
   background: linear-gradient(135deg, #fa850e, #f82634);
   color: white;
-  padding: 60px 30px;      /* taller hero */
+  padding: 10px 30px;
   text-align: center;
 }
 
 .cta-button {
   background-color: #00b3b6;
   color: white;
-  padding: 14px 26px;      /* bigger buttons */
+  padding: 10px 20px;
   text-decoration: none;
-  border-radius: 6px;
-  margin-top: 20px;        /* spacing */
-  display: inline-block;
+  border-radius: 5px;
 }
 
 #competitions {
-  padding: 80px 20px;      /* more space around section */
+  padding: 50px 20px;
   text-align: center;
 }
 
 .competition-list {
   display: flex;
+  /*justify-content: center;*/
   flex-wrap: wrap;
-  gap: 30px;               /* more space between cards */
-  justify-content: center;
+  gap: 20px;
+  /*overflow-x:auto;*/
+  /*white-space:nowrap;*/
 }
 
 .competition {
   background: white;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 30px;           /* more padding inside cards */
-  width: 300px;
-  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 290px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  /*flex: 0 0 auto;/*
+  /*white-space:normal;*/
 }
 
 .other-project {
   background: white;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 30px;
+  padding: 20px;
   width: 90%;
-  margin: 30px auto;       /* separate from others */
-  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 footer {
   background: #333;
   color: white;
   text-align: center;
-  padding: 30px 10px;      /* taller footer */
+  padding: 10px 0;
 }
 
 .bodytext {
-  padding: 0 50px;
-  margin: 0 auto;
-  max-width: 900px;        /* centered narrower column */
+  padding-left: 50px;
+  padding-right: 50px;
+  margin: 0;
 }
+
+
+
