@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TCF Creative Contest</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #1C18B7;
+      --orange: #EF7130;
+      --light-bg: #f8f9fa;
+    }
+
+    body {
+      margin: 0;
+      font-family: "IBM Plex Sans Thai", sans-serif;
+      background: var(--light-bg);
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--blue), var(--orange));
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 100px 40px;
+    }
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    /* Timeline section */
+    .timeline-section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .timeline-section h2 {
+      font-size: 36px;
+      margin-bottom: 40px;
+      color: var(--blue);
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Vertical line */
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 30px;
+      width: 3px;
+      background: var(--blue);
+    }
+
+    .timeline-step {
+      position: relative;
+      display: flex;
+      margin-bottom: 50px;
+    }
+
+    /* Dot */
+    .timeline-step .dot {
+      position: relative;
+      z-index: 1;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid var(--blue);
+      margin-left: 20px;
+      flex-shrink: 0;
+    }
+
+    /* Content */
+    .timeline-step .content {
+      margin-left: 40px;
+      text-align: left;
+    }
+    .timeline-step h3 {
+      margin: 0 0 6px;
+      font-size: 20px;
+      color: var(--orange);
+    }
+    .timeline-step p {
+      margin: 0;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: auto;
+      background: #e9ecef;
+      text-align: center;
+      padding: 40px 20px 20px;
+      color: #222;
+    }
+    footer h2 {
+      margin: 0 0 16px;
+      font-size: 28px;
+      color: var(--blue);
+    }
+    footer p {
+      margin: 0 0 20px;
+      font-size: 18px;
+    }
+    footer a {
+      color: var(--blue);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    .copyright {
+      background: var(--blue);
+      color: #fff;
+      padding: 10px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1>TCF Creative Contest</h1>
+  </div>
+
+  <!-- Timeline -->
+  <section class="timeline-section">
+    <h2>Timeline</h2>
+    <div class="timeline">
+      <div class="timeline-step">
+        <div class="dot"></div>
+        <div class="content">
+          <h3>ขั้นตอนที่ 1</h3>
+          <p>เปิดรับสมัครและส่งผลงาน</p>
+        </div>
+      </div>
+      <div class="timeline-step">
+        <div class="dot"></div>
+        <div class="content">
+          <h3>ขั้นตอนที่ 2</h3>
+          <p>ยืนยันการเข้าร่วม</p>
+        </div>
+      </div>
+      <div class="timeline-step">
+        <div class="dot"></div>
+        <div class="content">
+          <h3>ขั้นตอนที่ 3</h3>
+          <p>ปิดรับผลงาน</p>
+        </div>
+      </div>
+      <div class="timeline-step">
+        <div class="dot"></div>
+        <div class="content">
+          <h3>ขั้นตอนที่ 4</h3>
+          <p>คณะกรรมการตัดสิน</p>
+        </div>
+      </div>
+      <div class="timeline-step">
+        <div class="dot"></div>
+        <div class="content">
+          <h3>ขั้นตอนที่ 5</h3>
+          <p>ประกาศผลผู้ชนะ</p>
+        </div>
+      </div>
+      <div class="timeline-step">
+        <div class="dot"></div>
+        <div class="content">
+          <h3>ขั้นตอนที่ 6</h3>
+          <p>พิธีมอบรางวัล</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <h2>ติดตามข้อมูล</h2>
+    <p>ท่านสามารถติดตามข้อมูลเกี่ยวกับการแข่งขัน TCF ได้ที่เพจ Facebook<br>
+      <a href="https://www.facebook.com/tcfoc" target="_blank">Thailand Computer Festival</a> ครับ</p>
+    <div class="copyright">© 2025 | TCF Creative Contest</div>
+  </footer>
+
+</body>
+</html>
