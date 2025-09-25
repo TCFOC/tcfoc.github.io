@@ -145,8 +145,8 @@ footer {
 #hero-color,
 .bodycontent
 {
-  padding-left: 10% !important;
-  padding-right: 10% !important;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 /* On phones, use smaller padding */
