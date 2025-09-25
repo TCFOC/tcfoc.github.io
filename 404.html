@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <!--TCFOC-->
+<!--TCFOC-->
 
 <!--  <script>alert("Website under development")</script>-->
 
@@ -20,15 +20,16 @@
 </head>
 
 <body>
-  <header style="padding:0 20px">
-    <h2 class="sigma" style="line-height:90%">Thailand Computer Festival</h1>
-      <nav>
-        <ul>
-          <li><a href="/home">Home</a></li>
-          <!--<li><a href="competitions">Register</a></li>-->
-          <li><a href="https://www.facebook.com/tcfcontest">Facebook</a></li>
-        </ul>
-      </nav>
+  <header>
+    <h2 class="sigma site-title">Thailand Computer Festival</h2>
+    <nav class="nav-links">
+      <ul>
+        <li><a href="/home">Home</a></li>
+        <li><a href="https://facebook.com/tcfcontest">Facebook</a></li>
+        <li><a href="https://tally.so/r/3EpKR2"><b>Register</b></a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" aria-label="Menu">&#9776;</button>
   </header>
 
   <section id="hero-color" style="text-align: left;">
@@ -37,5 +38,15 @@
     ">ไม่พบหน้าที่ต้องการ</b></h1><br>
   </section>
 
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
+  </script>
+
 </body>
+
 </html>

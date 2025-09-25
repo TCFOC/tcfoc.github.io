@@ -24,6 +24,7 @@ h1 {
 
 .sigma {
   font-size: 26px !important;
+  margin-left: 20px;
 }
 
 h2 {
@@ -36,9 +37,12 @@ header {
   padding: 0;
   margin: 0;
   text-align: center;
-  display: flex; /* Use flexbox for layout */
-  justify-content: space-between; /* Space out header elements */
-  align-items: center; /* Center align items vertically */
+  display: flex;
+  /* Use flexbox for layout */
+  justify-content: space-between;
+  /* Space out header elements */
+  align-items: center;
+  /* Center align items vertically */
 }
 
 .header-text {
@@ -58,7 +62,8 @@ header h2 {
 nav ul {
   list-style: none;
   padding: 0;
-  display: flex; /* Use flexbox for horizontal menu */
+  display: flex;
+  /* Use flexbox for horizontal menu */
 }
 
 nav ul li {
@@ -72,7 +77,8 @@ nav ul li a {
 
 #hero {
   background: url('/src/title.JPG') no-repeat center center;
-  background-size: cover; /* makes it fill the section */
+  background-size: cover;
+  /* makes it fill the section */
   color: white;
   padding: 10px 30px;
   text-align: center;
@@ -134,29 +140,108 @@ footer {
   padding: 10px 0;
 }
 
-.bodytext {
-  padding-left: 50px;
-  padding-right: 50px;
-  margin: 0;
-}
-
 /* Apply side padding from hero downward */
 #hero,
 #hero-color,
-.bodycontent
-{
-  padding-left: 10%;
-  padding-right: 10%;
+.bodycontent {
+  padding-left: 10vw !important;
+  padding-right: 10vw !important;
 }
 
 /* On phones, use smaller padding */
 @media (max-width: 768px) {
+
   #hero,
   #hero-color,
-  .body-content
-  {
+  .bodycontent {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  .bar {
+    margin-left: -20px !important;
+    margin-right: -20px !important;
     padding-left: 20px !important;
     padding-right: 20px !important;
   }
 }
 
+.bar {
+  margin-left: -10vw;
+  margin-right: -10vw;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10vw;
+  padding-right: 10vw;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  background-color: #e0e4e8;
+  color: #fa850e;
+}
+
+hr {
+  margin-bottom: 5px;
+}
+
+/* Default: desktop */
+.site-title::after {
+  content: "";
+}
+
+.hamburger {
+  display: none;
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+
+  /* Hide normal nav, show hamburger */
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  /* Dropdown menu when active */
+  .nav-links.active {
+    display: block;
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    padding: 10px 20px 10px 40px;
+    border-radius: 12px;
+
+    /* Glass effect */
+    background: rgba(34, 34, 34, 0.5);
+    /* semi-transparent dark */
+    backdrop-filter: blur(5px);
+    /* main blur effect */
+    -webkit-backdrop-filter: blur(5px);
+    /* Safari support */
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    /* subtle border */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    /* depth */
+
+    text-align: right;
+  }
+
+
+  .nav-links ul {
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links ul li {
+    margin: 10px 0;
+  }
+}
