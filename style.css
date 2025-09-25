@@ -123,7 +123,7 @@ nav ul li a {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 20px;
-  width: 90%;
+  min-width: 80%;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -143,11 +143,8 @@ footer {
 /* Apply side padding from hero downward */
 #hero,
 #hero-color,
-#competitions,
-.bodytext,
-.competition-list,
-.other-project,
-footer {
+.bodycontent
+{
   padding-left: 10% !important;
   padding-right: 10% !important;
 }
@@ -156,11 +153,8 @@ footer {
 @media (max-width: 768px) {
   #hero,
   #hero-color,
-  #competitions,
-  .bodytext,
-  .competition-list,
-  .other-project,
-  footer {
+  .body-content
+  {
     padding-left: 20px !important;
     padding-right: 20px !important;
   }
