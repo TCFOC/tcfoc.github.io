@@ -140,5 +140,24 @@ footer {
   margin: 0;
 }
 
+/* Apply side padding (10% of viewport width) to sections after hero */
+#competitions,
+.bodytext,
+.competition-list,
+.other-project {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+/* On smaller devices, reset to normal */
+@media (max-width: 768px) {
+  #competitions,
+  .bodytext,
+  .competition-list,
+  .other-project {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
 
 
