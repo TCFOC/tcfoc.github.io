@@ -245,3 +245,26 @@ hr {
     margin: 10px 0;
   }
 }
+
+/* Desktop: show full name */
+.site-title {
+  visibility: visible;
+  position: relative;
+}
+
+/* Mobile: replace text with "TCF" */
+@media (max-width: 768px) {
+  .site-title {
+    visibility: hidden; /* hide original text */
+  }
+  .site-title::after {
+    content: "TCF";     /* show short version */
+    visibility: visible;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 24px;    /* adjust size */
+    font-weight: 700;
+    color: white;
+  }
+}
