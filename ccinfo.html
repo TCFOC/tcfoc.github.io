@@ -214,6 +214,28 @@ footer a:hover {
   margin-top: 30px;
   border-radius: 6px;
 }
+
+.site-title {
+  visibility: visible;
+  position: relative;
+}
+
+/* Mobile: replace text with "TCF" */
+@media (max-width: 768px) {
+  .site-title {
+    visibility: hidden; /* hide original text */
+  }
+  .site-title::after {
+    content: "TCF";     /* show short version */
+    visibility: visible;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 24px;    /* adjust size */
+    font-weight: 700;
+    color: white;
+  }
+}
   </style>
 </head>
 <body>
@@ -242,36 +264,36 @@ footer a:hover {
       <div class="timeline-step">
         <div class="dot"></div>
         <div class="content">
-          <h3>ขั้นตอนที่ 1</h3>
-          <p>เปิดรับสมัครและส่งผลงาน</p>
+          <h3>26 ส.ค. 68 - 19 ก.ย. 68</h3>
+          <p>เปิดให้ส่งผลงานรอบคัดเลือก</p>
         </div>
       </div>
       <div class="timeline-step">
         <div class="dot"></div>
         <div class="content">
-          <h3>ขั้นตอนที่ 2</h3>
-          <p>ยืนยันการเข้าร่วม</p>
+          <h3>22 ก.ย. 68</h3>
+          <p>ประกาศผลรอบแรก</p>
         </div>
       </div>
       <div class="timeline-step">
         <div class="dot"></div>
         <div class="content">
-          <h3>ขั้นตอนที่ 3</h3>
-          <p>ปิดรับผลงาน</p>
+          <h3>พ.ย. 68</h3>
+          <p>นักเรียนทำโปสเตอร์แสดงผลงาน</p>
         </div>
       </div>
       <div class="timeline-step">
         <div class="dot"></div>
         <div class="content">
-          <h3>ขั้นตอนที่ 4</h3>
-          <p>คณะกรรมการตัดสิน</p>
+          <h3>ธ.ค. 68</h3>
+          <p>นักเรียนและผู้ติดตามพิมพ์บัตรเข้างาน</p>
         </div>
       </div>
       <div class="timeline-step">
         <div class="dot"></div>
         <div class="content">
-          <h3>ขั้นตอนที่ 5</h3>
-          <p>ประกาศผลผู้ชนะ</p>
+          <h3>11 ม.ค. 69</h3>
+          <p>นำเสนอผลงานในรอบชิงชนะเลิศ</p>
         </div>
       </div>
     </div>
