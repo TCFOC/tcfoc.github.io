@@ -48,6 +48,13 @@
 
   <!-- Firebase + Firestore -->
   <script type="module">
+const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+          nav.classList.toggle('active');
+        });
+    
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
