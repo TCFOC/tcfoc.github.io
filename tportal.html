@@ -7,8 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --blue: #1C18B7;
-      --orange: #EF7130;
+      --primary: #FA850E; /* orange */
+      --secondary: #F82634; /* red */
       --light-bg: #f8f9fa;
       --dark-text: #111;
       --grey-text: #666;
@@ -27,18 +27,18 @@
       min-height: 100vh;
     }
 
-    /* Navbar (copied from Creative Contest page) */
+    /* Navbar */
     header {
       background: #222;
       padding: 0 20px;
-margin: 0;
+      margin: 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-family: "Prompt", sans-serif;
     }
 
-header h2 {margin:0;}
+    header h2 { margin:0; }
 
     .site-title {
       font-size: 26px;
@@ -74,10 +74,10 @@ header h2 {margin:0;}
 
     @media (max-width: 768px) {
       .site-title {
-        visibility: hidden; /* hide full text */
+        visibility: hidden;
       }
       .site-title::after {
-        content: "TCF"; /* short text */
+        content: "TCF";
         visibility: visible;
         position: absolute;
         left: 0;
@@ -125,13 +125,13 @@ header h2 {margin:0;}
     h2 {
       margin-bottom: 1.5rem;
       font-weight: 600;
-      color: var(--blue);
+      color: var(--primary);
     }
 
     input {
       padding: 0.8rem 1rem;
       width: 280px;
-      border: 2px solid var(--blue);
+      border: 2px solid var(--primary);
       border-radius: 8px;
       font-size: 1rem;
       outline: none;
@@ -139,13 +139,13 @@ header h2 {margin:0;}
     }
 
     input:focus {
-      border-color: var(--orange);
-      box-shadow: 0 0 0 3px rgba(239, 113, 48, 0.3);
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(248, 38, 52, 0.3);
     }
 
     button {
       margin-left: 0.5rem;
-      background: var(--blue);
+      background: var(--primary);
       color: white;
       padding: 0.8rem 1.5rem;
       border: none;
@@ -157,7 +157,7 @@ header h2 {margin:0;}
     }
 
     button:hover {
-      background: var(--orange);
+      background: var(--secondary);
       transform: translateY(-2px);
     }
 
@@ -214,11 +214,11 @@ header h2 {margin:0;}
     }
     .copyright {
       margin-top: 10px;
-      background: var(--blue);
+      background: var(--primary);
       color: #fff;
-      padding: 8px;
-      border-radius: 6px;
+      padding: 10px;
       font-size: 0.9rem;
+text-align:center;
     }
   </style>
 </head>
@@ -248,10 +248,9 @@ header h2 {margin:0;}
   </main>
 
   <!-- Footer -->
-  <footer>
-    <p>TPortal – Thailand Computer Festival</p>
-    <div class="copyright">© 2025 | TCF</div>
-  </footer>
+
+    <div class="copyright">© 2025 | Thailand Computer Festival</div>
+
 
   <script>
     const hamburger = document.querySelector('.hamburger');
@@ -291,7 +290,7 @@ header h2 {margin:0;}
         const btn = document.createElement("button");
         btn.textContent = "Download";
         btn.onclick = () => {
-          window.open("https://example.com/" + cert.filename, "_blank");
+          window.open("https://tcfthailand.com/certdata/" + cert.filename, "_blank");
         };
 
         card.appendChild(eventEl);
