@@ -42,7 +42,7 @@
 </h2>
 
 <div id="searchBox" style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap; justify-content:center; width:100%; max-width:500px; margin:0 auto;">
-  <input id="nameInput" placeholder="Enter your name"
+  <input id="nameInput" placeholder="กรุณาพิมพ์ชื่อ"
     style="flex:1; min-width:200px; padding:0.8rem 1rem; border:2px solid #FA850E; border-radius:8px;
            font-size:1rem; outline:none; font-family:'Prompt',system-ui,sans-serif;
            transition:all 0.2s ease; box-sizing:border-box; height:48px;">
@@ -118,7 +118,7 @@
     resultsDiv.innerHTML = "";
 
     if (!nameInput) {
-      resultsDiv.innerHTML = "<p style='color:#F82634;font-family:Prompt,system-ui,sans-serif;'>Please enter a name.</p>";
+      resultsDiv.innerHTML = "<p style='color:#F82634;font-family:Prompt,system-ui,sans-serif;'>กรุณาพิมพ์ชื่อของท่าน</p>";
       return;
     }
 
@@ -127,7 +127,7 @@
     const snapshot = await getDocs(q);
 
     if (snapshot.empty) {
-      resultsDiv.innerHTML = "<p style='color:#F82634;font-family:Prompt,system-ui,sans-serif;'>No certificates found for that name.</p>";
+      resultsDiv.innerHTML = "<p style='color:#F82634;font-family:Prompt,system-ui,sans-serif;'>ไม่พบข้อมูล กรุณาตรวจสอบการสะกดคำว่าถูกต้อง</p>";
       return;
     }
 
