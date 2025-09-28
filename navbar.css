@@ -38,7 +38,7 @@ header h2 { margin:0; }
     padding:10px 20px 10px 40px;
   }
   .nav-links ul { flex-direction:column; }
-  .nav-links ul li { margin:10px 0; }
+  .nav-links ul li { margin:10px 15px; }
   .hamburger { display:block; }
 }
 
