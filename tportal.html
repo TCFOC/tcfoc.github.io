@@ -6,31 +6,32 @@
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --primary:#FA850E; /* orange */
-      --secondary:#F82634; /* red */
+      --primary:#FA850E;
+      --secondary:#F82634;
       --light-bg:#f8f9fa;
       --dark-text:#111;
       --grey-text:#666;
     }
-    *{ font-family:"Prompt",system-ui,sans-serif; }
+    *{ font-family:"Prompt",system-ui,sans-serif; box-sizing:border-box; }
     body{
-      margin:0; background:var(--light-bg); color:var(--dark-text);
-      display:flex; flex-direction:column; min-height:100vh;
+      margin:0;
+      background:var(--light-bg);
+      color:var(--dark-text);
+      display:flex;
+      flex-direction:column;
+      min-height:100dvh; /* ✅ dynamic viewport height */
     }
 
     /* ===== NAVBAR ===== */
     header{
-      background:#222; padding:10px 20px; margin: 0;
+      background:#222; padding:10px 20px; margin:0;
       display:flex; justify-content:space-between; align-items:center;
       position:relative; z-index:1000;
     }
     header h2{ margin:0; }
     .site-title{ font-size:26px; font-weight:600; color:#fff; position:relative; }
 
-    .nav-links{ /* desktop default */
-      position:static; padding:0; opacity:1; pointer-events:auto; max-height:none;
-      background:transparent; border-radius:0;
-    }
+    .nav-links{ position:static; padding:0; opacity:1; pointer-events:auto; max-height:none; }
     .nav-links ul{ list-style:none; padding:0; margin:0; display:flex; }
     .nav-links ul li{ margin:0 15px; }
     .nav-links ul li a{ color:#fff; text-decoration:none; }
@@ -41,32 +42,27 @@
     }
     .hamburger:hover, .hamburger:focus{ color:#fff; background:transparent !important; outline:none; }
 
-    /* Collapse to hamburger at <=1000px */
     @media (max-width:1000px){
       .nav-links{
         position:absolute; top:60px; right:10px;
         background:rgba(34,34,34,0.5);
         backdrop-filter:blur(5px); -webkit-backdrop-filter:blur(5px);
         border-radius:12px; text-align:right; overflow:hidden;
-margin-top:10px;
-        /* closed state (STILL MOUNTED so it can animate) */
+        margin-top:10px;
         max-height:0; opacity:0; pointer-events:none; padding:0;
         transition:max-height .35s ease, opacity .25s ease, padding .25s ease;
       }
-      .nav-links.open{
-        max-height:320px; opacity:1; pointer-events:auto; padding:10px 20px 10px 40px;
-      }
+      .nav-links.open{ max-height:320px; opacity:1; pointer-events:auto; padding:10px 20px 10px 40px; }
       .nav-links ul{ flex-direction:column; }
       .nav-links ul li{ margin:10px 0; }
       .hamburger{ display:block; }
     }
 
-    /* Abbreviate title ONLY below 768px */
     @media (max-width:768px){
       .site-title{ visibility:hidden; }
       .site-title::after{
         content:"TCF"; visibility:visible; position:absolute; left:0; top:0;
-        font-size:24px; font-weight:700; color:#fff;
+        font-size:24px; font-weight:700; color:#fff; font-weight:700;
       }
     }
 
@@ -80,7 +76,6 @@ margin-top:10px;
     }
     input:focus{ border-color:var(--secondary); box-shadow:0 0 0 3px rgba(248,38,52,.3); }
 
-    /* Scope action button so it doesn't affect hamburger */
     .btn{
       margin-left:.5rem; background:var(--primary); color:#fff; padding:.8rem 1.5rem;
       border:none; border-radius:8px; font-size:1rem; cursor:pointer; font-weight:500;
@@ -136,57 +131,52 @@ margin-top:10px;
   </footer>
 
   <script>
-    const hamburger = document.getElementById('hamburger');
-    const nav = document.getElementById('navMenu');
+    const hamburger=document.getElementById('hamburger');
+    const nav=document.getElementById('navMenu');
 
-    // Toggle menu (slide via CSS class)
-    hamburger.addEventListener('click', (e) => {
+    hamburger.addEventListener('click',(e)=>{
       e.stopPropagation();
-      const isOpen = nav.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      const isOpen=nav.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded',isOpen?'true':'false');
     });
 
-    // Close when clicking outside
-    document.addEventListener('click', (e) => {
-      if (nav.classList.contains('open') && !nav.contains(e.target) && e.target !== hamburger) {
+    document.addEventListener('click',(e)=>{
+      if(nav.classList.contains('open') && !nav.contains(e.target) && e.target!==hamburger){
         nav.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-expanded','false');
       }
     });
 
-    // Close with ESC
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && nav.classList.contains('open')) {
+    document.addEventListener('keydown',(e)=>{
+      if(e.key==='Escape' && nav.classList.contains('open')){
         nav.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-expanded','false');
       }
     });
 
-    // Optional: ensure menu closes if resized back to desktop
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 1000 && nav.classList.contains('open')) {
+    window.addEventListener('resize',()=>{
+      if(window.innerWidth>1000 && nav.classList.contains('open')){
         nav.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-expanded','false');
       }
     });
 
-    // Placeholder search
     function searchCerts(){
-      const name = document.getElementById("nameInput").value.trim();
-      const resultsDiv = document.getElementById("results");
-      resultsDiv.innerHTML = "";
+      const name=document.getElementById("nameInput").value.trim();
+      const resultsDiv=document.getElementById("results");
+      resultsDiv.innerHTML="";
       if(!name){
-        resultsDiv.innerHTML = "<p style='color:red;'>Please enter a name.</p>";
+        resultsDiv.innerHTML="<p style='color:red;'>Please enter a name.</p>";
         return;
       }
-      const sampleCerts = [
-        { event:"TCF", type:"Gold Medalist", filename:"sample_tcf.pdf" },
-        { event:"Smart Summit", type:"Participant", filename:"sample_ss.pdf" }
+      const sampleCerts=[
+        {event:"TCF",type:"Gold Medalist",filename:"sample_tcf.pdf"},
+        {event:"Smart Summit",type:"Participant",filename:"sample_ss.pdf"}
       ];
       sampleCerts.forEach(cert=>{
         const card=document.createElement("div");
         card.className="cert-card";
-        card.innerHTML = `
+        card.innerHTML=`
           <div class="cert-event">${cert.event}</div>
           <div class="cert-type">${cert.type}</div>
           <button class="btn" onclick="window.open('https://tcfthailand.com/certdata/${cert.filename}','_blank')">Download</button>
