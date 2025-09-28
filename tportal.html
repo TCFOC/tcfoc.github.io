@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TPortal – Certificates</title>
+  <!-- Prompt font -->
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #1C18B7;
+      --orange: #EF7130;
+      --light-bg: #f8f9fa;
+      --dark-text: #111;
+      --grey-text: #666;
+    }
+
+    * {
+      font-family: "Prompt", system-ui, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--light-bg);
+      color: var(--dark-text);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Navbar (copied from Creative Contest page) */
+    header {
+      background: #222;
+      padding: 0 20px;
+margin: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: "Prompt", sans-serif;
+    }
+
+header h2 {margin:0;}
+
+    .site-title {
+      font-size: 26px;
+      font-weight: 600;
+      color: white;
+      visibility: visible;
+      position: relative;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .site-title {
+        visibility: hidden; /* hide full text */
+      }
+      .site-title::after {
+        content: "TCF"; /* short text */
+        visibility: visible;
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-size: 24px;
+        font-weight: 700;
+        color: white;
+      }
+
+      .nav-links {
+        display: none;
+      }
+      .nav-links.active {
+        display: block;
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        background: rgba(34, 34, 34, 0.5);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        padding: 10px 20px 10px 40px;
+        border-radius: 12px;
+        text-align: right;
+      }
+      .nav-links ul {
+        flex-direction: column;
+      }
+      .nav-links ul li {
+        margin: 10px 0;
+      }
+      .hamburger {
+        display: block;
+      }
+    }
+
+    /* Page Content */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    h2 {
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      color: var(--blue);
+    }
+
+    input {
+      padding: 0.8rem 1rem;
+      width: 280px;
+      border: 2px solid var(--blue);
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    input:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(239, 113, 48, 0.3);
+    }
+
+    button {
+      margin-left: 0.5rem;
+      background: var(--blue);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.25s ease, transform 0.15s ease;
+    }
+
+    button:hover {
+      background: var(--orange);
+      transform: translateY(-2px);
+    }
+
+    #results {
+      margin-top: 2rem;
+      width: 100%;
+      max-width: 500px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .cert-card {
+      background: #fff;
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .cert-event {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--dark-text);
+      margin: 0 0 0.2rem 0;
+    }
+
+    .cert-type {
+      font-size: 1rem;
+      color: var(--grey-text);
+      margin: 0 0 0.8rem 0;
+    }
+
+    .cert-card button {
+      margin: 0;
+      width: auto;
+      align-self: flex-start;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Footer */
+    footer {
+      background: #e9ecef;
+      text-align: center;
+      padding: 20px;
+      color: #222;
+    }
+    .copyright {
+      margin-top: 10px;
+      background: var(--blue);
+      color: #fff;
+      padding: 8px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <h2 class="site-title">Thailand Computer Festival</h2>
+    <nav class="nav-links">
+      <ul>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/ccinfo">Creative Contest</a></li>
+        <li><a href="https://facebook.com/tcfcontest">Facebook</a></li>
+        <li><a href="https://tally.so/r/3EpKR2"><b>Register</b></a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" aria-label="Menu">&#9776;</button>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <h2>Certificate Download</h2>
+    <div>
+      <input type="text" id="nameInput" placeholder="Enter your name" />
+      <button id="searchBtn" onclick="searchCerts()">Search</button>
+    </div>
+    <div id="results"></div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>TPortal – Thailand Computer Festival</p>
+    <div class="copyright">© 2025 | TCF</div>
+  </footer>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
+
+    // Placeholder search
+    function searchCerts() {
+      const name = document.getElementById("nameInput").value.trim();
+      const resultsDiv = document.getElementById("results");
+      resultsDiv.innerHTML = "";
+
+      if (!name) {
+        resultsDiv.innerHTML = "<p style='color:red;'>Please enter a name.</p>";
+        return;
+      }
+
+      const sampleCerts = [
+        { event: "TCF", type: "Gold Medalist", filename: "sample_tcf.pdf" },
+        { event: "Smart Summit", type: "Participant", filename: "sample_ss.pdf" }
+      ];
+
+      sampleCerts.forEach(cert => {
+        const card = document.createElement("div");
+        card.className = "cert-card";
+
+        const eventEl = document.createElement("div");
+        eventEl.className = "cert-event";
+        eventEl.textContent = cert.event;
+
+        const typeEl = document.createElement("div");
+        typeEl.className = "cert-type";
+        typeEl.textContent = cert.type;
+
+        const btn = document.createElement("button");
+        btn.textContent = "Download";
+        btn.onclick = () => {
+          window.open("https://example.com/" + cert.filename, "_blank");
+        };
+
+        card.appendChild(eventEl);
+        card.appendChild(typeEl);
+        card.appendChild(btn);
+        resultsDiv.appendChild(card);
+      });
+    }
+  </script>
+</body>
+</html>
