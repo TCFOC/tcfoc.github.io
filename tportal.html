@@ -71,35 +71,30 @@
     </nav>
     <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
   </header>
+</body>
+<body style="margin:0; background:#f8f9fa; color:#111; display:flex; flex-direction:column; align-items:center; padding:2rem; font-family:'Prompt',system-ui,sans-serif;">
 
-  <!-- Main Content -->
-  <main>
-    <center>
-    <br>
-    <h2>TPortal</h2>
-    <div class="search-box">
-      <input type="text" id="nameInput" placeholder="Enter your name" /><br>
-      <button class="btn" id="searchBtn" onclick="searchCerts()">Search</button>
-    </div>
-    </center>
-    <div id="results"></div>
-  </main>
+  <h2 style="margin-bottom:1.5rem; font-weight:600; color:#FA850E; font-family:'Prompt',system-ui,sans-serif;">
+    Welcome to TPortal
+  </h2>
 
-  <!-- Footer -->
-  <footer>
-    <div class="copyright">© 2025 | Thailand Computer Festival</div>
-  </footer>
+  <div id="searchBox" style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap; justify-content:center; width:100%; max-width:500px;">
+    <input id="nameInput" placeholder="Enter your name"
+      style="flex:1; min-width:200px; padding:0.8rem 1rem; border:2px solid #FA850E; border-radius:8px;
+             font-size:1rem; outline:none; font-family:'Prompt',system-ui,sans-serif;
+             transition:all 0.2s ease; box-sizing:border-box; height:48px;">
+    <button id="searchBtn" onclick="searchCerts()"
+      style="flex:0; background:#FA850E; color:white; padding:0 1.5rem;
+             border:none; border-radius:8px; font-size:1rem; cursor:pointer; font-weight:500;
+             font-family:'Prompt',system-ui,sans-serif; transition:all 0.2s ease; height:48px;">
+      Search
+    </button>
+  </div>
 
-  <script>
-    const hamburger = document.querySelector('.hamburger');
-    const nav = document.querySelector('.nav-links');
+  <div id="results" style="margin-top:2rem; width:100%; max-width:500px; display:flex; flex-direction:column; gap:1rem;"></div>
 
-    hamburger.addEventListener('click', () => {
-      nav.classList.toggle('active');
-    });
-  </script>
-  <!-- Firebase + Firestore -->
   <script type="module">
+    // --- Firebase Setup ---
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -116,40 +111,112 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
+    // --- Hover effects manually ---
+    const inputEl = document.getElementById("nameInput");
+    const btnEl = document.getElementById("searchBtn");
+
+    inputEl.addEventListener("mouseenter", () => { inputEl.style.borderColor = "#F82634"; });
+    inputEl.addEventListener("mouseleave", () => { inputEl.style.borderColor = "#FA850E"; });
+
+    btnEl.addEventListener("mouseenter", () => { btnEl.style.background = "#F82634"; });
+    btnEl.addEventListener("mouseleave", () => { btnEl.style.background = "#FA850E"; });
+
+    // --- Responsive layout ---
+    function adjustLayout() {
+      const searchBox = document.getElementById("searchBox");
+      if (window.innerWidth <= 600) {
+        searchBox.style.flexDirection = "column";
+        searchBox.style.alignItems = "stretch";
+      } else {
+        searchBox.style.flexDirection = "row";
+        searchBox.style.alignItems = "center";
+      }
+    }
+    window.addEventListener("resize", adjustLayout);
+    window.addEventListener("load", adjustLayout);
+
+    // --- Cooldown state ---
+    let searchCooldown = false;
+
     async function searchCerts() {
-      const name = document.getElementById("nameInput").value.trim();
+      if (searchCooldown) return;
+
+      const searchBtn = document.getElementById("searchBtn");
+      searchBtn.disabled = true;
+      searchCooldown = true;
+
+      setTimeout(() => {
+        searchBtn.disabled = false;
+        searchCooldown = false;
+      }, 500); // 500ms cooldown
+
+      const nameInput = document.getElementById("nameInput").value.trim();
       const resultsDiv = document.getElementById("results");
       resultsDiv.innerHTML = "";
-      if (!name) {
-        resultsDiv.innerHTML = "<p style='color:red;'>Please enter a name.</p>";
+
+      if (!nameInput) {
+        resultsDiv.innerHTML = "<p style='color:#F82634;font-family:Prompt,system-ui,sans-serif;'>Please enter a name.</p>";
         return;
       }
 
-      try {
-        const certRef = collection(db, "certificates");
-        const q = query(certRef, where("name", "==", name));
-        const querySnapshot = await getDocs(q);
+      const certsRef = collection(db, "certificates");
+      const q = query(certsRef, where("name", "==", nameInput));
+      const snapshot = await getDocs(q);
 
-        if (querySnapshot.empty) {
-          resultsDiv.innerHTML = `<p>No certificates found for "${name}".</p>`;
-          return;
-        }
-
-        querySnapshot.forEach((doc) => {
-          const cert = doc.data();
-          const card = document.createElement("div");
-          card.className = "cert-card";
-          card.innerHTML = `
-            <div class="cert-event">${cert.event}</div>
-            <div class="cert-type">${cert.type}</div>
-            <button class="btn" onclick="window.open('https://tcfthailand.com/certdata/${cert.filename}','_blank')">Download</button>
-          `;
-          resultsDiv.appendChild(card);
-        });
-      } catch (err) {
-        console.error("Error fetching certificates:", err);
-        resultsDiv.innerHTML = `<p style="color:red;">Error fetching certificates. Try again later.</p>`;
+      if (snapshot.empty) {
+        resultsDiv.innerHTML = "<p style='color:#F82634;font-family:Prompt,system-ui,sans-serif;'>No certificates found for that name.</p>";
+        return;
       }
+
+      snapshot.forEach(doc => {
+        const data = doc.data();
+
+        const card = document.createElement("div");
+        card.setAttribute("style", `
+          background:#fff; padding:1rem 1.5rem; border-radius:10px;
+          box-shadow:0 4px 12px rgba(0,0,0,0.08);
+          display:flex; flex-direction:column; align-items:flex-start;
+          font-family:'Prompt',system-ui,sans-serif;
+        `);
+
+        const eventEl = document.createElement("div");
+        eventEl.textContent = data.event;
+        eventEl.setAttribute("style", `
+          font-size:1.4rem; font-weight:700; color:#111;
+          margin:0 0 0.2rem 0; font-family:'Prompt',system-ui,sans-serif;
+        `);
+
+        const typeEl = document.createElement("div");
+        typeEl.textContent = data.type;
+        typeEl.setAttribute("style", `
+          font-size:1rem; color:#666; margin:0 0 0.8rem 0;
+          font-family:'Prompt',system-ui,sans-serif;
+        `);
+
+        const btn = document.createElement("button");
+        btn.textContent = "Download";
+        btn.setAttribute("style", `
+          margin:0; width:auto; align-self:flex-start;
+          background:#FA850E; color:white; padding:0.6rem 1.2rem;
+          border:none; border-radius:8px; font-size:1rem;
+          cursor:pointer; font-weight:500; font-family:'Prompt',system-ui,sans-serif;
+          transition:all 0.2s ease; height:40px;
+        `);
+        btn.addEventListener("mouseenter", () => { btn.style.background = "#F82634"; });
+        btn.addEventListener("mouseleave", () => { btn.style.background = "#FA850E"; });
+
+        btn.onclick = () => {
+          const url = data.filename.startsWith("http")
+            ? data.filename
+            : "https://storage.googleapis.com/tportal-tcf/certs/" + data.filename;
+          window.open(url, "_blank");
+        };
+
+        card.appendChild(eventEl);
+        card.appendChild(typeEl);
+        card.appendChild(btn);
+        resultsDiv.appendChild(card);
+      });
     }
 
     window.searchCerts = searchCerts;
