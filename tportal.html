@@ -1,96 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!--TCFOC-->
+
 <head>
   <meta charset="UTF-8">
-  <title>TPortal – Certificates</title>
-  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --primary:#FA850E;
-      --secondary:#F82634;
-      --light-bg:#f8f9fa;
-      --dark-text:#111;
-      --grey-text:#666;
-    }
-    *{ font-family:"Prompt",system-ui,sans-serif; box-sizing:border-box; }
-    body{
-      margin:0; background:var(--light-bg); color:var(--dark-text);
-      display:flex; flex-direction:column; min-height:100dvh;
-    }
-
-    /* ===== NAVBAR ===== */
-    header{
-      background:#222; padding:10px 20px; margin:0;
-      display:flex; justify-content:space-between; align-items:center;
-      position:relative; z-index:1000;
-    }
-    header h2{ margin:0; }
-    .site-title{ font-size:26px; font-weight:600; color:#fff; position:relative; }
-    .nav-links{ position:static; padding:0; opacity:1; pointer-events:auto; max-height:none; }
-    .nav-links ul{ list-style:none; padding:0; margin:0; display:flex; }
-    .nav-links ul li{ margin:0 15px; }
-    .nav-links ul li a{ color:#fff; text-decoration:none; }
-    .hamburger{ display:none; font-size:28px; background:transparent !important; border:none; color:#fff; cursor:pointer; line-height:1; }
-    .hamburger:hover, .hamburger:focus{ color:#fff; background:transparent !important; outline:none; }
-
-    @media (max-width:1000px){
-      .nav-links{
-        position:absolute; top:60px; right:10px;
-        background:rgba(34,34,34,0.95);
-        backdrop-filter:blur(5px);
-        border-radius:12px; text-align:right; overflow:hidden;
-        margin-top:10px;
-        max-height:0; opacity:0; pointer-events:none; padding:0;
-        transition:max-height .35s ease, opacity .25s ease, padding .25s ease;
-      }
-      .nav-links.open{ max-height:320px; opacity:1; pointer-events:auto; padding:10px 20px 10px 40px; }
-      .nav-links ul{ flex-direction:column; }
-      .nav-links ul li{ margin:10px 0; }
-      .hamburger{ display:block; }
-    }
-
-    @media (max-width:768px){
-      .site-title{ visibility:hidden; }
-      .site-title::after{
-        content:"TCF"; visibility:visible; position:absolute; left:0; top:0;
-        font-size:24px; font-weight:700; color:#fff;
-      }
-    }
-
-    /* ===== PAGE ===== */
-    main{ flex:1; display:flex; flex-direction:column; align-items:center; padding:2rem; }
-    h2{ margin-bottom:1.5rem; font-weight:600; color:var(--primary); }
-    input{
-      padding:.8rem 1rem; width:280px; border:2px solid var(--primary);
-      border-radius:8px; font-size:1rem; outline:none; transition:all .2s ease;
-    }
-    input:focus{ border-color:var(--secondary); box-shadow:0 0 0 3px rgba(248,38,52,.3); }
-    .btn{
-      margin-left:.5rem; background:var(--primary); color:#fff; padding:.8rem 1.5rem;
-      border:none; border-radius:8px; font-size:1rem; cursor:pointer; font-weight:500;
-      transition:background .25s ease, transform .15s ease;
-    }
-    .btn:hover{ background:var(--secondary); transform:translateY(-2px); }
-    #results{ margin-top:2rem; width:100%; max-width:500px; display:flex; flex-direction:column; gap:1rem; }
-    .cert-card{
-      background:#fff; padding:1rem 1.5rem; border-radius:10px;
-      box-shadow:0 4px 12px rgba(0,0,0,.08);
-      display:flex; flex-direction:column; align-items:flex-start;
-      animation:fadeIn .3s ease;
-    }
-    .cert-event{ font-size:1.4rem; font-weight:700; color:var(--dark-text); margin:0 0 .2rem 0; }
-    .cert-type{ font-size:1rem; color:var(--grey-text); margin:0 0 .8rem 0; }
-    @keyframes fadeIn{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
-
-    /* ===== FOOTER ===== */
-    footer{ margin-top:auto; }
-    .copyright{ background:var(--primary); color:#fff; padding:10px; font-size:.9rem; text-align:center; }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+  <title>Thailand Computer Festival</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preload" as="image" href="/src/cc.JPG">
 </head>
+
 <body>
   <!-- Navbar -->
   <header>
-    <h2 class="site-title">Thailand Computer Festival</h2>
+    <h2 class="sigma site-title">Thailand Computer Festival</h2>
     <nav class="nav-links" id="navMenu">
       <ul>
         <li><a href="/home">Home</a></li>
@@ -99,13 +28,13 @@
         <li><a href="https://tally.so/r/3EpKR2"><b>Register</b></a></li>
       </ul>
     </nav>
-    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">&#9776;</button>
+    <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
   </header>
 
-  <!-- Main -->
+  <!-- Main Content -->
   <main>
     <h2>Certificate Download</h2>
-    <div>
+    <div class="search-box">
       <input type="text" id="nameInput" placeholder="Enter your name" />
       <button class="btn" id="searchBtn" onclick="searchCerts()">Search</button>
     </div>
@@ -136,31 +65,33 @@
     const db = getFirestore(app);
 
     // Navbar toggle
-    const hamburger=document.getElementById('hamburger');
-    const nav=document.getElementById('navMenu');
-    hamburger.addEventListener('click',(e)=>{
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('navMenu');
+    hamburger.addEventListener('click', (e) => {
       e.stopPropagation();
-      const isOpen=nav.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded',isOpen?'true':'false');
+      const isOpen = nav.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
-    document.addEventListener('click',(e)=>{
-      if(nav.classList.contains('open') && !nav.contains(e.target) && e.target!==hamburger){
-        nav.classList.remove('open'); hamburger.setAttribute('aria-expanded','false');
+    document.addEventListener('click', (e) => {
+      if (nav.classList.contains('open') && !nav.contains(e.target) && e.target !== hamburger) {
+        nav.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
       }
     });
-    document.addEventListener('keydown',(e)=>{
-      if(e.key==='Escape' && nav.classList.contains('open')){
-        nav.classList.remove('open'); hamburger.setAttribute('aria-expanded','false');
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav.classList.contains('open')) {
+        nav.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
       }
     });
 
     // Search function
-    async function searchCerts(){
-      const name=document.getElementById("nameInput").value.trim();
-      const resultsDiv=document.getElementById("results");
-      resultsDiv.innerHTML="";
-      if(!name){
-        resultsDiv.innerHTML="<p style='color:red;'>Please enter a name.</p>";
+    async function searchCerts() {
+      const name = document.getElementById("nameInput").value.trim();
+      const resultsDiv = document.getElementById("results");
+      resultsDiv.innerHTML = "";
+      if (!name) {
+        resultsDiv.innerHTML = "<p style='color:red;'>Please enter a name.</p>";
         return;
       }
 
@@ -169,16 +100,16 @@
         const q = query(certRef, where("name", "==", name));
         const querySnapshot = await getDocs(q);
 
-        if(querySnapshot.empty){
+        if (querySnapshot.empty) {
           resultsDiv.innerHTML = `<p>No certificates found for "${name}".</p>`;
           return;
         }
 
         querySnapshot.forEach((doc) => {
           const cert = doc.data();
-          const card=document.createElement("div");
-          card.className="cert-card";
-          card.innerHTML=`
+          const card = document.createElement("div");
+          card.className = "cert-card";
+          card.innerHTML = `
             <div class="cert-event">${cert.event}</div>
             <div class="cert-type">${cert.type}</div>
             <button class="btn" onclick="window.open('https://tcfthailand.com/certdata/${cert.filename}','_blank')">Download</button>
