@@ -127,7 +127,7 @@
     const snapshot = await getDocs(q);
 
     if (snapshot.empty) {
-      resultsDiv.innerHTML = "<p style='color:#F82634;font-family:Prompt,system-ui,sans-serif;'>ไม่พบข้อมูล กรุณาตรวจสอบการสะกดคำว่าถูกต้อง</p>";
+      resultsDiv.innerHTML = "<p style='color:#F82634;font-family:Prompt,system-ui,sans-serif;'>ไม่พบข้อมูล กรุณาตรวจสอบว่าชื่อของท่านถูกต้อง</p>";
       return;
     }
 
