@@ -6,62 +6,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
     rel="stylesheet">
   <title>Thailand Computer Festival</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preload" as="image" href="/src/cc.JPG">
-
-  <style>
-    :root {
-      --primary: #FA850E;
-    }
-
-    main h2 {
-      color: var(--primary);
-    }
-
-    input {
-      padding: 0.8rem 1rem;
-      width: 280px;
-      border: 2px solid var(--primary);
-      border-radius: 8px;
-      font-size: 1rem;
-      outline: none;
-      transition: all 0.2s ease;
-    }
-
-    input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(250, 133, 14, 0.3);
-    }
-
-    .btn {
-      margin-left: 0.5rem;
-      background: var(--primary);
-      color: #fff;
-      padding: 0.8rem 1.5rem;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-      font-weight: 500;
-      transition: background 0.25s ease, transform 0.15s ease;
-    }
-
-    .btn:hover {
-      background: #d86f0c;
-      transform: translateY(-2px);
-    }
-  </style>
 </head>
 
 <body>
-  <!-- Navbar -->
   <header>
     <h2 class="sigma site-title">Thailand Computer Festival</h2>
-    <nav class="nav-links" id="navMenu">
+    <nav class="nav-links">
       <ul>
         <li><a href="/home">Home</a></li>
         <li><a href="/ccinfo">Creative Contest</a></li>
@@ -69,157 +29,169 @@
         <li><a href="https://tally.so/r/3EpKR2"><b>Register</b></a></li>
       </ul>
     </nav>
-    <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+    <button class="hamburger" aria-label="Menu">&#9776;</button>
   </header>
-</body>
-<body style="margin:0; background:#f8f9fa; color:#111; display:flex; flex-direction:column; align-items:center; padding:2rem; font-family:'Prompt',system-ui,sans-serif;">
 
-  <h2 style="margin-bottom:1.5rem; font-weight:600; color:#FA850E; font-family:'Prompt',system-ui,sans-serif;">
-    Welcome to TPortal
-  </h2>
 
-  <div id="searchBox" style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap; justify-content:center; width:100%; max-width:500px;">
-    <input id="nameInput" placeholder="Enter your name"
-      style="flex:1; min-width:200px; padding:0.8rem 1rem; border:2px solid #FA850E; border-radius:8px;
-             font-size:1rem; outline:none; font-family:'Prompt',system-ui,sans-serif;
-             transition:all 0.2s ease; box-sizing:border-box; height:48px;">
-    <button id="searchBtn" onclick="searchCerts()"
-      style="flex:0; background:#FA850E; color:white; padding:0 1.5rem;
-             border:none; border-radius:8px; font-size:1rem; cursor:pointer; font-weight:500;
-             font-family:'Prompt',system-ui,sans-serif; transition:all 0.2s ease; height:48px;">
-      Search
-    </button>
-  </div>
+<!-- Google Fonts: Prompt -->
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <div id="results" style="margin-top:2rem; width:100%; max-width:500px; display:flex; flex-direction:column; gap:1rem;"></div>
+<h2 style="margin-bottom:1.5rem; font-weight:600; color:#FA850E; font-family:'Prompt',system-ui,sans-serif; text-align:center;">
+  TPortal – Certificate Download
+</h2>
 
-  <script type="module">
-    // --- Firebase Setup ---
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+<div id="searchBox" style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap; justify-content:center; width:100%; max-width:500px; margin:0 auto;">
+  <input id="nameInput" placeholder="Enter your name"
+    style="flex:1; min-width:200px; padding:0.8rem 1rem; border:2px solid #FA850E; border-radius:8px;
+           font-size:1rem; outline:none; font-family:'Prompt',system-ui,sans-serif;
+           transition:all 0.2s ease; box-sizing:border-box; height:48px;">
+  <button id="searchBtn" onclick="searchCerts()"
+    style="flex:0; background:#FA850E; color:white; padding:0 1.5rem;
+           border:none; border-radius:8px; font-size:1rem; cursor:pointer; font-weight:500;
+           font-family:'Prompt',system-ui,sans-serif; transition:all 0.2s ease; height:48px;">
+    Search
+  </button>
+</div>
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyA6eNJdphEWUMpNUUh63ukrtLcAFlExIMo",
-      authDomain: "tportal-tcf.firebaseapp.com",
-      projectId: "tportal-tcf",
-      storageBucket: "tportal-tcf.firebasestorage.app",
-      messagingSenderId: "1096689140873",
-      appId: "1:1096689140873:web:3d11896083a74df3c7f258",
-      measurementId: "G-S1B4SQHE41"
-    };
+<div id="results" style="margin-top:2rem; width:100%; max-width:500px; display:flex; flex-direction:column; gap:1rem; margin-left:auto; margin-right:auto;"></div>
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+<script type="module">
+  // --- Firebase Setup ---
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-    // --- Hover effects manually ---
-    const inputEl = document.getElementById("nameInput");
-    const btnEl = document.getElementById("searchBtn");
+  const firebaseConfig = {
+    apiKey: "AIzaSyA6eNJdphEWUMpNUUh63ukrtLcAFlExIMo",
+    authDomain: "tportal-tcf.firebaseapp.com",
+    projectId: "tportal-tcf",
+    storageBucket: "tportal-tcf.firebasestorage.app",
+    messagingSenderId: "1096689140873",
+    appId: "1:1096689140873:web:3d11896083a74df3c7f258",
+    measurementId: "G-S1B4SQHE41"
+  };
 
-    inputEl.addEventListener("mouseenter", () => { inputEl.style.borderColor = "#F82634"; });
-    inputEl.addEventListener("mouseleave", () => { inputEl.style.borderColor = "#FA850E"; });
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
 
-    btnEl.addEventListener("mouseenter", () => { btnEl.style.background = "#F82634"; });
-    btnEl.addEventListener("mouseleave", () => { btnEl.style.background = "#FA850E"; });
+  // --- Hover effects manually ---
+  const inputEl = document.getElementById("nameInput");
+  const btnEl = document.getElementById("searchBtn");
 
-    // --- Responsive layout ---
-    function adjustLayout() {
-      const searchBox = document.getElementById("searchBox");
-      if (window.innerWidth <= 600) {
-        searchBox.style.flexDirection = "column";
-        searchBox.style.alignItems = "stretch";
-      } else {
-        searchBox.style.flexDirection = "row";
-        searchBox.style.alignItems = "center";
-      }
+  inputEl.addEventListener("mouseenter", () => { inputEl.style.borderColor = "#F82634"; });
+  inputEl.addEventListener("mouseleave", () => { inputEl.style.borderColor = "#FA850E"; });
+
+  btnEl.addEventListener("mouseenter", () => { btnEl.style.background = "#F82634"; });
+  btnEl.addEventListener("mouseleave", () => { btnEl.style.background = "#FA850E"; });
+
+  // --- Responsive layout ---
+  function adjustLayout() {
+    const searchBox = document.getElementById("searchBox");
+    if (window.innerWidth <= 600) {
+      searchBox.style.flexDirection = "column";
+      searchBox.style.alignItems = "stretch";
+    } else {
+      searchBox.style.flexDirection = "row";
+      searchBox.style.alignItems = "center";
     }
-    window.addEventListener("resize", adjustLayout);
-    window.addEventListener("load", adjustLayout);
+  }
+  window.addEventListener("resize", adjustLayout);
+  window.addEventListener("load", adjustLayout);
 
-    // --- Cooldown state ---
-    let searchCooldown = false;
+  // --- Cooldown state ---
+  let searchCooldown = false;
 
-    async function searchCerts() {
-      if (searchCooldown) return;
+  async function searchCerts() {
+    if (searchCooldown) return;
 
-      const searchBtn = document.getElementById("searchBtn");
-      searchBtn.disabled = true;
-      searchCooldown = true;
+    const searchBtn = document.getElementById("searchBtn");
+    searchBtn.disabled = true;
+    searchCooldown = true;
 
-      setTimeout(() => {
-        searchBtn.disabled = false;
-        searchCooldown = false;
-      }, 500); // 500ms cooldown
+    setTimeout(() => {
+      searchBtn.disabled = false;
+      searchCooldown = false;
+    }, 500); // 500ms cooldown
 
-      const nameInput = document.getElementById("nameInput").value.trim();
-      const resultsDiv = document.getElementById("results");
-      resultsDiv.innerHTML = "";
+    const nameInput = document.getElementById("nameInput").value.trim();
+    const resultsDiv = document.getElementById("results");
+    resultsDiv.innerHTML = "";
 
-      if (!nameInput) {
-        resultsDiv.innerHTML = "<p style='color:#F82634;font-family:Prompt,system-ui,sans-serif;'>Please enter a name.</p>";
-        return;
-      }
-
-      const certsRef = collection(db, "certificates");
-      const q = query(certsRef, where("name", "==", nameInput));
-      const snapshot = await getDocs(q);
-
-      if (snapshot.empty) {
-        resultsDiv.innerHTML = "<p style='color:#F82634;font-family:Prompt,system-ui,sans-serif;'>No certificates found for that name.</p>";
-        return;
-      }
-
-      snapshot.forEach(doc => {
-        const data = doc.data();
-
-        const card = document.createElement("div");
-        card.setAttribute("style", `
-          background:#fff; padding:1rem 1.5rem; border-radius:10px;
-          box-shadow:0 4px 12px rgba(0,0,0,0.08);
-          display:flex; flex-direction:column; align-items:flex-start;
-          font-family:'Prompt',system-ui,sans-serif;
-        `);
-
-        const eventEl = document.createElement("div");
-        eventEl.textContent = data.event;
-        eventEl.setAttribute("style", `
-          font-size:1.4rem; font-weight:700; color:#111;
-          margin:0 0 0.2rem 0; font-family:'Prompt',system-ui,sans-serif;
-        `);
-
-        const typeEl = document.createElement("div");
-        typeEl.textContent = data.type;
-        typeEl.setAttribute("style", `
-          font-size:1rem; color:#666; margin:0 0 0.8rem 0;
-          font-family:'Prompt',system-ui,sans-serif;
-        `);
-
-        const btn = document.createElement("button");
-        btn.textContent = "Download";
-        btn.setAttribute("style", `
-          margin:0; width:auto; align-self:flex-start;
-          background:#FA850E; color:white; padding:0.6rem 1.2rem;
-          border:none; border-radius:8px; font-size:1rem;
-          cursor:pointer; font-weight:500; font-family:'Prompt',system-ui,sans-serif;
-          transition:all 0.2s ease; height:40px;
-        `);
-        btn.addEventListener("mouseenter", () => { btn.style.background = "#F82634"; });
-        btn.addEventListener("mouseleave", () => { btn.style.background = "#FA850E"; });
-
-        btn.onclick = () => {
-          const url = data.filename.startsWith("http")
-            ? data.filename
-            : "https://storage.googleapis.com/tportal-tcf/certs/" + data.filename;
-          window.open(url, "_blank");
-        };
-
-        card.appendChild(eventEl);
-        card.appendChild(typeEl);
-        card.appendChild(btn);
-        resultsDiv.appendChild(card);
-      });
+    if (!nameInput) {
+      resultsDiv.innerHTML = "<p style='color:#F82634;font-family:Prompt,system-ui,sans-serif;'>Please enter a name.</p>";
+      return;
     }
 
-    window.searchCerts = searchCerts;
-  </script>
-</body>
+    const certsRef = collection(db, "certificates");
+    const q = query(certsRef, where("name", "==", nameInput));
+    const snapshot = await getDocs(q);
+
+    if (snapshot.empty) {
+      resultsDiv.innerHTML = "<p style='color:#F82634;font-family:Prompt,system-ui,sans-serif;'>No certificates found for that name.</p>";
+      return;
+    }
+
+    snapshot.forEach(doc => {
+      const data = doc.data();
+
+      const card = document.createElement("div");
+      card.setAttribute("style", `
+        background:#fff; padding:1rem 1.5rem; border-radius:10px;
+        box-shadow:0 4px 12px rgba(0,0,0,0.08);
+        display:flex; flex-direction:column; align-items:flex-start;
+        font-family:'Prompt',system-ui,sans-serif;
+      `);
+
+      const eventEl = document.createElement("div");
+      eventEl.textContent = data.event;
+      eventEl.setAttribute("style", `
+        font-size:1.4rem; font-weight:700; color:#111;
+        margin:0 0 0.2rem 0; font-family:'Prompt',system-ui,sans-serif;
+      `);
+
+      const typeEl = document.createElement("div");
+      typeEl.textContent = data.type;
+      typeEl.setAttribute("style", `
+        font-size:1rem; color:#666; margin:0 0 0.8rem 0;
+        font-family:'Prompt',system-ui,sans-serif;
+      `);
+
+      const btn = document.createElement("button");
+      btn.textContent = "Download";
+      btn.setAttribute("style", `
+        margin:0; width:auto; align-self:flex-start;
+        background:#FA850E; color:white; padding:0.6rem 1.2rem;
+        border:none; border-radius:8px; font-size:1rem;
+        cursor:pointer; font-weight:500; font-family:'Prompt',system-ui,sans-serif;
+        transition:all 0.2s ease; height:40px;
+      `);
+      btn.addEventListener("mouseenter", () => { btn.style.background = "#F82634"; });
+      btn.addEventListener("mouseleave", () => { btn.style.background = "#FA850E"; });
+
+      btn.onclick = () => {
+        const url = data.filename.startsWith("http")
+          ? data.filename
+          : "https://storage.googleapis.com/tportal-tcf/certs/" + data.filename;
+        window.open(url, "_blank");
+      };
+
+      card.appendChild(eventEl);
+      card.appendChild(typeEl);
+      card.appendChild(btn);
+      resultsDiv.appendChild(card);
+    });
+  }
+
+  window.searchCerts = searchCerts;
+</script>
+
+  
+<script>
+const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+          nav.classList.toggle('active');
+        });
+        </script>
+
 </html>
