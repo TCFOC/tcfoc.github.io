@@ -4,23 +4,23 @@
   <meta charset="UTF-8">
   <title>Upload Certificates – TCF Creative Contest 2026</title>
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
-    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
+  import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
 
-    // Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyA6eNJdphEWUMpNUUh63ukrtLcAFlExIMo",
-      authDomain: "tportal-tcf.firebaseapp.com",
-      projectId: "tportal-tcf",
-      storageBucket: "tportal-tcf.firebasestorage.app",
-      messagingSenderId: "1096689140873",
-      appId: "1:1096689140873:web:3d11896083a74df3c7f258",
-      measurementId: "G-S1B4SQHE41"
-    };
+  const firebaseConfig = {
+    apiKey: "AIzaSyA6eNJdphEWUMpNUUh63ukrtLcAFlExIMo",
+    authDomain: "tportal-tcf.firebaseapp.com",
+    projectId: "tportal-tcf",
+    storageBucket: "tportal-tcf.firebasestorage.app",
+    messagingSenderId: "1096689140873",
+    appId: "1:1096689140873:web:3d11896083a74df3c7f258",
+    measurementId: "G-S1B4SQHE41"
+  };
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
 
+  
     // Certificate list (from certificate_names_full.csv)
     const certificates = [
       { name: "ชื่อ นามสกุล", filename: "25001.pdf" },
@@ -142,27 +142,32 @@
     ];
 
     async function uploadCertificates() {
-      const btn = document.getElementById("uploadBtn");
-      btn.disabled = true;
-      btn.textContent = "Uploading...";
-      let count = 0;
+    const btn = document.getElementById("uploadBtn");
+    btn.disabled = true;
+    btn.textContent = "Uploading...";
+    let count = 0;
 
-      for (const cert of certificates) {
-        const code = cert.filename.replace("25", "").replace(".pdf", "");
-        const id = `ss25-${code.padStart(3, "0")}`;
-        await setDoc(doc(db, "certificates", id), {
-          event: "TCF Creative Contest 2026",
-          filename: cert.filename,
-          name: cert.name,
-          type: "เกียรติบัตรเข้าร่วมการประกวด รอบแรก"
-        });
-        console.log(`✅ Uploaded ${id}: ${cert.name}`);
-        count++;
-      }
-
-      btn.textContent = `✅ Uploaded ${count} Certificates`;
-      alert("All certificates uploaded successfully!");
+    for (const cert of certificates) {
+      const code = cert.filename.replace("25", "").replace(".pdf", "");
+      const id = `ss25-${code.padStart(3, "0")}`;
+      await setDoc(doc(db, "certificates", id), {
+        event: "TCF Creative Contest 2026",
+        filename: cert.filename,
+        name: cert.name,
+        type: "เกียรติบัตรเข้าร่วมการประกวด รอบแรก"
+      });
+      console.log(`✅ Uploaded ${id}: ${cert.name}`);
+      count++;
     }
+
+    btn.textContent = `✅ Uploaded ${count} Certificates`;
+    alert("All certificates uploaded successfully!");
+  }
+
+  // Attach event listener AFTER the module loads
+  window.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("uploadBtn").addEventListener("click", uploadCertificates);
+  });
   </script>
 </head>
 <body style="font-family:'IBM Plex Sans Thai',sans-serif;text-align:center;margin-top:60px;">
