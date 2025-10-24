@@ -263,6 +263,88 @@ footer a:hover {
     <h1>TCF Creative Contest</h1>
   </div>
 
+      <h2>Timeline</h2>
+<style>
+  * {
+    font-family: 'IBM Plex Sans Thai', system-ui, sans-serif;
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    background: #f6f7fb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 30px;
+  }
+  .video-box {
+    width: min(90%, 700px);
+    text-align: center;
+    aspect-ratio: 4/3;
+  }
+  select {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border: 2px solid #1C18B7;
+    border-radius: 8px;
+    background: white;
+    color: #1C18B7;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-bottom: 20px;
+  }
+  select:hover {
+    background: #f0f2ff;
+  }
+  .yt-frame {
+    width: 100%;
+ 
+    border-radius: 12px;
+    border: none;
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+  }
+  .yt-show {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+</style>
+
+<div class="video-box">
+  <select id="videoSelect" onchange="loadVideo()">
+    <option value="">เลือกวิดีโอ</option>
+    <option value="dQw4w9WgXcQ">Video 1</option>
+    <option value="ysz5S6PUM-U">Video 2</option>
+    <option value="aqz-KE-bpKQ">Video 3</option>
+    <option value="wTcNtgA6gHs">Video 4</option>
+    <option value="J---aiyznGQ">Video 5</option>
+    <option value="KVZ-P-ZI6W4">Video 6</option>
+    <option value="hY7m5jjJ9mM">Video 7</option>
+    <option value="CevxZvSJLk8">Video 8</option>
+    <option value="fHI8X4OXluQ">Video 9</option>
+    <option value="9bZkp7q19f0">Video 10</option>
+  </select>
+
+  <iframe id="ytFrame" class="yt-frame" allowfullscreen></iframe>
+</div>
+
+<script>
+  function loadVideo(){
+    const id = document.getElementById("videoSelect").value;
+    const iframe = document.getElementById("ytFrame");
+    if(!id){ iframe.src=""; iframe.classList.remove("yt-show"); return; }
+    iframe.classList.remove("yt-show");
+    iframe.src = "https://www.youtube.com/embed/" + id;
+    setTimeout(()=>{ iframe.classList.add("yt-show"); }, 50);
+  }
+</script>
+
   <!-- Timeline -->
   <section class="timeline-section">
     <h2>Timeline</h2>
