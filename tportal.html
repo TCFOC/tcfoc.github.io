@@ -60,8 +60,8 @@
 </div>
 
 <div id="results" style="margin-top:2rem; width:100%; max-width:500px; display:flex; flex-direction:column; gap:1rem; margin-left:auto; margin-right:auto;"></div>
-
-  <center style="font-size:16px; color:grey;">หากพิมพ์ชื่อถูกแล้วแต่ยังไม่สามารถดาวน์โหลดได้ กรุณาติดต่อเจ้าหน้าที่ที่ไลน์ @wearenewthings</center>
+<br>
+  <center style="font-size:16px; color:grey; line-height:100%">หากพิมพ์ชื่อถูกแล้วแต่ยังไม่สามารถดาวน์โหลดได้ กรุณาติดต่อเจ้าหน้าที่ที่ไลน์ @wearenewthings</center>
 </div>
 <script type="module">
   // --- Firebase Setup ---
@@ -134,7 +134,7 @@
     const snapshot = await getDocs(q);
 
     if (snapshot.empty) {
-      resultsDiv.innerHTML = "<p style='color:#F82634;font-family:Prompt,system-ui,sans-serif;'>ไม่พบข้อมูล กรุณาตรวจสอบว่าชื่อของท่านถูกต้อง และไม่ต้องพิมพ์คำนำหน้าชื่อ</p>";
+      resultsDiv.innerHTML = "<p style='color:#F82634;font-family:Prompt,system-ui,sans-serif;'>ไม่พบข้อมูล กรุณาตรวจสอบว่าชื่อของท่านถูกต้อง โดยไม่ต้องพิมพ์คำนำหน้าชื่อ</p>";
       return;
     }
 
