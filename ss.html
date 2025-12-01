@@ -51,9 +51,14 @@
   }
 
   header {
+    min-height: 100svh;
     text-align: center;
-    padding: 120px 20px 100px;
     background: radial-gradient(circle at center, rgba(80,110,150,0.25), transparent 60%);
+
+    display: flex;             /* enable flexbox */
+    flex-direction: column;    /* stack content vertically */
+    justify-content: center;   /* vertical center */
+    align-items: center;       /* horizontal center */
   }
 
   header h1 {
@@ -130,7 +135,6 @@
 <header>
   <h1>SMART SUMMIT 2026</h1>
   <p class="date">26 เมษายน 2569</p>
-  <a class="btn" href="#about">เกี่ยวกับงาน</a>
 </header>
 
 <div class="container">
