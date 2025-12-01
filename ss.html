@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Summit 2026</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    margin: 0;
+    background: #0D1B2A;
+    font-family: 'Barlow', 'IBM Plex Sans Thai', system-ui, sans-serif;
+    color: #EAEAEA;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* STATIC STARFIELD */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity: 0.22;
+    pointer-events: none;
+    z-index: -3;
+  }
+
+  /* NETWORK CANVAS (dynamic) */
+  #networkCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    pointer-events: none;
+    opacity: 0.25;
+  }
+
+  /* GENERAL PAGE LAYOUT */
+  .container {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+  }
+
+  header {
+    text-align: center;
+    padding: 120px 20px 100px;
+    background: radial-gradient(circle at center, rgba(80,110,150,0.25), transparent 60%);
+  }
+
+  header h1 {
+    font-size: 3.2rem;
+    margin: 0;
+    font-weight: 700;
+  }
+
+  header h2 {
+    margin-top: 12px;
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: #A9D6E5;
+  }
+
+  header p.date {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+
+  .btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 28px;
+    background: #E4572E;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.2s;
+  }
+
+  .btn:hover {
+    background: #F06E49;
+  }
+
+  section { margin: 80px 0; }
+  section h3 { font-size: 2rem; margin-bottom: 14px; }
+
+  .card {
+    background: #112034;
+    padding: 24px;
+    border-radius: 12px;
+    margin-top: 14px;
+    border: 1px solid rgba(255,255,255,0.06);
+    backdrop-filter: blur(1px);
+  }
+
+  .grid { display: grid; gap: 22px; }
+
+  @media (min-width: 720px) {
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  footer {
+    margin-top: 120px;
+    padding: 50px 0;
+    text-align: center;
+    color: #ADB5BD;
+    font-size: 0.9rem;
+    background: #0A131F;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- DYNAMIC NETWORK CANVAS -->
+<canvas id="networkCanvas"></canvas>
+
+<!-- HERO -->
+<header>
+  <h1>SMART SUMMIT 2026</h1>
+  <p class="date">26 เมษายน 2569</p>
+  <a class="btn" href="#about">เกี่ยวกับงาน</a>
+</header>
+
+<div class="container">
+
+  <!-- CONTENT SECTIONS (unchanged, same as your previous version) -->
+
+  <section id="about">
+    <h3>Smart Summit คืออะไร</h3>
+    <div class="card">
+      <p>
+        Smart Summit เป็นเซมินาร์ออนไลน์ที่เปิดพื้นที่ให้เยาวชนรุ่นใหม่ได้แบ่งปันไอเดีย ความคิดสร้างสรรค์ และประสบการณ์ที่มีคุณค่า
+      </p>
+      <p>
+        งานนี้ถูกออกแบบมาเพื่อพัฒนาทักษะการสื่อสาร การนำเสนอ และการคิดวิเคราะห์ ซึ่งเป็นทักษะสำคัญในโลกยุคปัจจุบัน
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h3>วัตถุประสงค์</h3>
+    <div class="card">
+      <p>✔ สร้างเวทีให้เยาวชนเป็นผู้สร้างแรงบันดาลใจ</p>
+      <p>✔ ส่งเสริม soft skills</p>
+      <p>✔ เปิดโอกาสสู่คนทุกกลุ่ม</p>
+    </div>
+  </section>
+
+  <section>
+    <h3>รูปแบบการจัดงาน</h3>
+    <div class="card">
+      <p>🖥 ออนไลน์เต็มรูปแบบ</p>
+      <p>⏳ ใช้เวลา 4 ชั่วโมง</p>
+      <p>🎤 บรรยายโดยผู้ผ่านการคัดเลือกจาก TCF</p>
+    </div>
+  </section>
+
+  <section>
+    <h3>สิ่งที่คุณจะได้พบ</h3>
+    <div class="grid grid-3">
+      <div class="card"><h4>🎤 Talks</h4><p>แรงบันดาลใจจากเยาวชน</p></div>
+      <div class="card"><h4>❓ Q&A</h4><p>ถามตอบสด</p></div>
+      <div class="card"><h4>✨ Interactive</h4><p>กิจกรรมร่วมสนุก</p></div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  Smart Summit 2026 • Powered by TCF Thailand Ecosystem
+</footer>
+
+<!-- NETWORK JS -->
+<script>
+const canvas = document.getElementById("networkCanvas");
+const ctx = canvas.getContext("2d");
+
+let width, height;
+function resize() {
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+/* Generate nodes */
+const NODE_COUNT = 12;
+let nodes = [];
+
+for (let i = 0; i < NODE_COUNT; i++) {
+  nodes.push({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    vx: (Math.random() - 0.5) * 0.4,
+    vy: (Math.random() - 0.5) * 0.4
+  });
+}
+
+function animate() {
+  ctx.clearRect(0, 0, width, height);
+
+  /* Draw lines */
+  ctx.strokeStyle = "rgba(169,214,229,0.35)";
+  ctx.lineWidth = 1;
+  for (let i = 0; i < NODE_COUNT; i++) {
+    for (let j = i+1; j < NODE_COUNT; j++) {
+      let dx = nodes[i].x - nodes[j].x;
+      let dy = nodes[i].y - nodes[j].y;
+      let dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 260) {
+        ctx.beginPath();
+        ctx.moveTo(nodes[i].x, nodes[i].y);
+        ctx.lineTo(nodes[j].x, nodes[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+
+  /* Draw nodes */
+  for (let n of nodes) {
+    ctx.beginPath();
+    ctx.fillStyle = "#A9D6E5";
+    ctx.arc(n.x, n.y, 4, 0, Math.PI * 2);
+    ctx.fill();
+
+    /* Movement */
+    n.x += n.vx;
+    n.y += n.vy;
+
+    /* Bounce off edges */
+    if (n.x < 0 || n.x > width) n.vx *= -1;
+    if (n.y < 0 || n.y > height) n.vy *= -1;
+  }
+
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+
+</body>
+</html>
