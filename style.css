@@ -106,11 +106,10 @@ nav ul li a {
 
 .competition-list {
   display: flex;
-  /*justify-content: center;*/
-  flex-wrap: wrap;
   gap: 20px;
-  /*overflow-x:auto;*/
-  /*white-space:nowrap;*/
+  overflow-x: auto;
+  padding: 10px 4px;
+  scroll-snap-type: x mandatory;
 }
 
 .competition {
@@ -120,8 +119,8 @@ nav ul li a {
   padding: 20px;
   width: 290px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  /*flex: 0 0 auto;/*
-  /*white-space:normal;*/
+  flex-shrink: 0;
+  scroll-snap-align: start;
 }
 
 .other-project {
