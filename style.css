@@ -76,7 +76,7 @@ nav ul li a {
 }
 
 #hero {
-  background: url('/src/title.JPG') no-repeat center center;
+  background: url('/src/title.PNG') no-repeat center center;
   background-size: cover;
   /* makes it fill the section */
   color: white;
