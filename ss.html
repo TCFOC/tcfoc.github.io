@@ -57,6 +57,7 @@ body::before {
 header {
   min-height:100svh;
   display:flex;
+  position:relative;
   flex-direction:column;
   justify-content:center;
   align-items:center;
@@ -125,6 +126,29 @@ footer {
   color:#ADB5BD;
 }
 
+.scroll-down {
+  position: absolute;
+  bottom: 24px;
+  font-size: 2rem;
+  opacity: 0;
+  color: #A9D6E5;
+
+  animation: 
+    fadeIn 1s ease forwards,
+    bounce 1.8s infinite;
+
+  animation-delay: 1s, 1.5s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 0.8; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
 </style>
 </head>
 
@@ -135,6 +159,7 @@ footer {
 <header>
   <h1>Smart Summit 2026</h1>
   <p class="date">เตรียมพบกับเวทีเทคโนโลยีประจำปีของเยาวชน!<br>พบกันวันที่ 26.4.26 ผ่านระบบ Zoom Meeting</p>
+<div class="scroll-down material-symbols-outlined">keyboard_arrow_down</div>
 </header>
 
 <div class="container">
