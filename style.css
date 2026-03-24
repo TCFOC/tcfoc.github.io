@@ -1,3 +1,9 @@
+:root {
+  --red: #F82634;
+  --orange: #FA850E;
+  --deepblue: #2634F8;
+}
+
 * {
   font-family: "Prompt", "Segoe UI", Arial, sans-serif;
 }
@@ -267,3 +273,4 @@ hr {
     color: white;
   }
 }
+
