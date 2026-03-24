@@ -274,3 +274,15 @@ hr {
   }
 }
 
+.columns {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .columns {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
