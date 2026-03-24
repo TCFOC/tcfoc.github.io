@@ -286,3 +286,9 @@ hr {
   }
 }
 
+@media (min-width: 768px) {
+  .hide-on-desktop {
+    display: none;
+  }
+}
+
