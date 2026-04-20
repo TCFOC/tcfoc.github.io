@@ -267,10 +267,17 @@ hr {
     visibility: visible;
     position: absolute;
     left: 0;
-    top: 0;
+    top: 50%;
+    transform: translateY(-50%);
     font-size: 24px;    /* adjust size */
     font-weight: 700;
     color: white;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  header {
+    max-height: 3em !important;
   }
 }
 
