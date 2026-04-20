@@ -130,7 +130,7 @@
 
     <!-- a grid for one person split 1:2, the left has an image in 9:16 ratio, right is container for names and such. -->
 
-    <div style="display:grid; grid-template-columns: 1fr 3fr; gap:30px; align-items:center;">
+    <div class="theteam">
       <img src="/src/team1.JPG" style="width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:10px;">
       <div>
         <h2 style="margin-bottom: 0; font-weight:600; color:#FA850E; font-family:'Prompt',system-ui,sans-serif;">
@@ -143,7 +143,7 @@
       </div>
     </div>
     <br>
-    <div style="display:grid; grid-template-columns: 1fr 3fr; gap:30px; align-items:center;">
+    <div class="theteam">
       <img src="/src/placeholder.JPG" style="width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:10px;">
       <div>
         <h2 style="margin-bottom: 0; font-weight:600; color:#FA850E; font-family:'Prompt',system-ui,sans-serif;">
@@ -156,7 +156,7 @@
       </div>
     </div>
     <br>
-    <div style="display:grid; grid-template-columns: 1fr 3fr; gap:30px; align-items:center;">
+    <div class="theteam">
       <img src="/src/team2.JPG" style="width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:10px;">
       <div>
         <h2 style="margin-bottom: 0; font-weight:600; color:#FA850E; font-family:'Prompt',system-ui,sans-serif;">
@@ -176,6 +176,23 @@
 <footer>
   <p style="font-size:14px">&copy; 2026 | Thailand Computer Festival</p>
 </footer>
+
+<style>
+  /* Additional */
+  .theteam {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 30px;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .theteam {
+      grid-template-columns: 1fr;
+      margin-bottom: 30px;
+    }
+  }
+</style>
 
 
 <script src="navbar.js"></script>
