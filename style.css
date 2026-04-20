@@ -203,7 +203,7 @@ hr {
 }
 
 /* Mobile styles */
-@media (max-device-width: 768px), (max-width: 768px) {
+@media (max-device-width: 99999px), (max-width: 99999px) {
 
   /* Hide normal nav, show hamburger */
   .nav-links {
@@ -226,9 +226,9 @@ hr {
     /* Glass effect */
     background: rgba(34, 34, 34, 0.5);
     /* semi-transparent dark */
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(6px);
     /* main blur effect */
-    -webkit-backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(6px);
     /* Safari support */
 
     border: 1px solid rgba(255, 255, 255, 0.15);

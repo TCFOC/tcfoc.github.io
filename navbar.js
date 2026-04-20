@@ -1,29 +1,45 @@
-const hamburger = document.getElementById('hamburger');
-const nav = document.getElementById('navMenu');
+const hamburger = document.querySelector('.hamburger');
+const nav = document.querySelector('.nav-links');
 
-hamburger.addEventListener('click', (e) => {
-  e.stopPropagation();
-  const isOpen = nav.classList.toggle('open');
-  hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+hamburger.addEventListener('click', () => {
+  nav.classList.toggle('active');
 });
 
-document.addEventListener('click', (e) => {
-  if (nav.classList.contains('open') && !nav.contains(e.target) && e.target !== hamburger) {
-    nav.classList.remove('open');
-    hamburger.setAttribute('aria-expanded','false');
+const imageCount = 6; // Total images in /src/, e.g., image1.jpg to image10.jpg
+const wrapper = document.getElementById("slides-wrapper");
+
+// Add original slides
+for (let i = 2; i <= imageCount; i++) {
+  const slide = document.createElement("div");
+  slide.className = "slide";
+  slide.innerHTML = `<img src="src/image${i}.JPG" alt="Image ${i}">`;
+  wrapper.appendChild(slide);
+}
+
+// Clone them for seamless infinite loop
+for (let i = 2; i <= imageCount; i++) {
+  const slide = document.createElement("div");
+  slide.className = "slide";
+  slide.innerHTML = `<img src="src/image${i}.JPG" alt="Image ${i}">`;
+  wrapper.appendChild(slide);
+}
+
+let index = 0;
+const slideWidth = 100; // Each slide is 100% width
+
+function moveSlide() {
+  index++;
+  wrapper.style.transition = "transform 1s ease-in-out";
+  wrapper.style.transform = `translateX(-${index * slideWidth}%)`;
+
+  // When done with first round, snap back to beginning invisibly
+  if (index === imageCount) {
+    setTimeout(() => {
+      wrapper.style.transition = "none";
+      wrapper.style.transform = "translateX(0)";
+      index = 0;
+    }, 1000); // After slide finishes
   }
-});
+}
 
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && nav.classList.contains('open')) {
-    nav.classList.remove('open');
-    hamburger.setAttribute('aria-expanded','false');
-  }
-});
-
-window.addEventListener('resize', () => {
-  if (window.innerWidth > 1000 && nav.classList.contains('open')) {
-    nav.classList.remove('open');
-    hamburger.setAttribute('aria-expanded','false');
-  }
-});
+setInterval(moveSlide, 5000); // Change every 5 seconds
