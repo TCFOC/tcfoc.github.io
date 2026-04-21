@@ -83,32 +83,25 @@ nav ul li a {
 
 /* Mobile nav */
 @media (max-width: 768px) {
-  .nav-links {
-    display: none;
+  .site-title {
+    visibility: hidden; /* hide original text */
   }
-  .nav-links.active {
-    display: block;
+  .site-title::after {
+    content: "TCF";     /* show short version */
+    visibility: visible;
     position: absolute;
-    top: 60px;
-    right: 10px;
-    background: rgba(34, 34, 34, 0.5);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    padding: 10px 20px 10px 40px;
-    border-radius: 12px;
-    text-align: right;
-  }
-  .nav-links ul {
-    flex-direction: column;
-    margin: 0;
-    padding: 0;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;    /* adjust size */
+    font-weight: 700;
+    color: white;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
-  .nav-links ul li {
-    margin: 10px 0;
-  }
-  .hamburger {
-    display: block;
+  header {
+    max-height: 3em !important;
   }
 }
 
