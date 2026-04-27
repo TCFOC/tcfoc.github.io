@@ -235,6 +235,54 @@ footer a:hover {
     .sigma {
       font-size: 26px !important;
     }
+
+    @media (max-device-width: 99999px), (max-width: 99999px) {
+
+  /* Hide normal nav, show hamburger */
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  /* Dropdown menu when active */
+  .nav-links.active {
+    display: block;
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    padding: 10px 20px 10px 40px;
+    border-radius: 12px;
+
+    /* Glass effect */
+    background: rgba(34, 34, 34, 0.5);
+    /* semi-transparent dark */
+    backdrop-filter: blur(6px);
+    /* main blur effect */
+    -webkit-backdrop-filter: blur(6px);
+    /* Safari support */
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    /* subtle border */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    /* depth */
+
+    text-align: right;
+  }
+
+
+  .nav-links ul {
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links ul li {
+    margin: 10px 0;
+  }
+}
   </style>
 </head>
 <body>
