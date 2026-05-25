@@ -215,7 +215,25 @@ footer a:hover {
   position: relative;
 }
 
-/* Mobile: replace text with "TCF" */
+/* Mobile: replace text with "TCF" 
+@media (max-width: 768px) {
+  .site-title {
+    visibility: hidden; /* hide original text 
+  }
+  .site-title::after {
+    content: "TCF";     /* show short version 
+    visibility: visible;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 24px;    /* adjust size 
+    font-weight: 700;
+    color: white;
+  }
+}*/
+
+    /*new*/
+    /* Mobile: replace text with "TCF" */
 @media (max-width: 768px) {
   .site-title {
     visibility: hidden; /* hide original text */
@@ -225,10 +243,17 @@ footer a:hover {
     visibility: visible;
     position: absolute;
     left: 0;
-    top: 0;
+    top: 50%;
+    transform: translateY(-50%);
     font-size: 24px;    /* adjust size */
     font-weight: 700;
     color: white;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  header {
+    max-height: 3em !important;
   }
 }
 
