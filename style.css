@@ -91,10 +91,11 @@ nav ul li a {
 }
 
 #hero-color {
-  background: linear-gradient(135deg, #E65973, #C1568C);
-  color: white;
+  background: white;
+  color: #E65973;
   padding: 10px 30px;
   text-align: center;
+  border-bottom: 1px solid grey;
 }
 
 .cta-button {
