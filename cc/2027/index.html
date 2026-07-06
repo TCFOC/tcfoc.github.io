@@ -21,7 +21,8 @@
     html,
     body {
       height: 100%;
-      overflow: hidden;
+      overflow-x: auto;
+      overflow-y: hidden;
       /* prevent any scrolling */
     }
 
@@ -241,6 +242,13 @@
     @media (max-width: 480px) {
       .buttons {
         flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .countdown {
+        transform: scale(0.75);
+        transform-origin: center;
       }
     }
   </style>
