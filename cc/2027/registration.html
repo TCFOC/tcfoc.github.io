@@ -309,11 +309,11 @@
     (() => {
       const deadline = new Date("2026-09-10T00:00:00+07:00");
 
-      const pre = "/cc/2027/index.html";
+      const closed = "/cc/2027/closed.html";
       const open = "/cc/2027/registration.html";
 
       function updateRedirect() {
-        const target = (new Date() > deadline) ? pre : open;
+        const target = (new Date() > deadline) ? closed : open;
 
         if (location.pathname !== new URL(target, location.origin).pathname) {
           location.replace(target);
