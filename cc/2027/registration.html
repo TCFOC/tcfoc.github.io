@@ -307,13 +307,13 @@
 
   <script>
     (() => {
-      const deadline = new Date("2026-07-07T10:00:00+07:00");
+      const deadline = new Date("2026-09-10T00:00:00+07:00");
 
       const pre = "/cc/2027/index.html";
       const open = "/cc/2027/registration.html";
 
       function updateRedirect() {
-        const target = (new Date() < deadline) ? pre : open;
+        const target = (new Date() > deadline) ? pre : open;
 
         if (location.pathname !== new URL(target, location.origin).pathname) {
           location.replace(target);
